@@ -98,6 +98,7 @@ def make_new_card(settings, data, game_name, index=0, front=True):
         card.no_print = True
 
     card.front = front
+    card.front_or_back = 'front' if card.front else 'back'
 
     # store all data just in case
     card.data = data
