@@ -8,11 +8,16 @@ div.page.back {
   margin-left: 0;
 }
 
-div.page {
+div.page_container {
     background-color: white;
+    border: none;
 }
 
-.page.back .cards {
-    justify-content: flex-end;
+div.page.back .cards {
+    justify-content: center;
     /*color: red;*/
+}
+
+div.page.front .cards {
+    justify-content: center;
 }
