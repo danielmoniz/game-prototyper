@@ -11,23 +11,26 @@
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script type=text/javascript src="{{ url_for('static', filename='js/save.js') }}"></script>
+  <script type=text/javascript src="{{ url_for('static', filename='js/format.js') }}"></script>
 </head>
 
 <body>
 
-  {% for page in pages %}
-  <div class="page_container">
-    <div class="page {% if loop.index0 is divisibleby 2 %}front{% else %}back{% endif %}">
-      <div class="cards">
-	{% for card in page %}
-	<div class="card {{ card.card_type }} {{ card.front_or_back }}">
-	  {{ card.html | safe }}
-	</div>
-	{% endfor %}
-      </div>
+  <div class="cards fronts">
+    {% for card in fronts %}
+    <div class="card {{ card.card_type }} {{ card.front_or_back }}" card_name="{{ card.name }}">
+      {{ card.html | safe }}
     </div>
+    {% endfor %}
   </div>
-  {% endfor %}
+
+  <div class="cards backs">
+    {% for card in backs %}
+    <div class="card {{ card.card_type }} {{ card.front_or_back }}" card_name="{{ card.name }}">
+      {{ card.html | safe }}
+    </div>
+    {% endfor %}
+  </div>
 
 </body>
 

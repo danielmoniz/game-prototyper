@@ -4,20 +4,35 @@ body {
 }
 
 div.page_container {
-    /* 573pt is the precise width of a printed pdf.
-     * A safe border when printing is 0.25" (18pt). */
-    padding: 18pt;
-    width: 573pt;
-    width: 544pt;
-    height: 715pt;
-    height: 686pt;
+  /* 573pt is the precise width of a printed pdf.
+   * A safe border when printing is 0.25" (18pt). */
+  width: 573pt;
+  height: 743pt;
 
-    background-color: #E6E6E6;
-    border: 1px solid black;
+  border: 1pt solid black;
+  padding: 20pt;
+  box-sizing: border-box;
+}
+
+div.page_container.back {
+    flex-flow: row-reverse wrap;
+}
+
+div.max-page-size {
+  width: 544pt;
+  height: 686pt;
+  width: 100%;
+  height: 100%;
+
+  background-color: #E6E6E6;
 }
 
 div.page {
-    display: inline-block;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 
 .cards {
@@ -25,10 +40,9 @@ div.page {
     flex-flow: row wrap;
 }
 
-.page.back .cards {
+.page.back {
     display: flex;
     flex-flow: row-reverse wrap;
-    justify-content: flex-end;
 }
 
 .card {

@@ -35,18 +35,6 @@ def display(game_name):
             cards[front].append(get_renderable_card(game_name, card))
             card_types.append(card.card_type)
 
-    front_pages = [] # groups of cards designed to fit on single pages
-    back_pages = [] # groups of cards designed to fit on single pages
-    # @TODO First group cards by their size
-    #grouped_front_pages = group_cards_by_size(front_pages)
-    print_cards.group_cards_by_page(cards[True], front_pages)
-    print_cards.group_cards_by_page(cards[False], back_pages)
-
-    combined_pages = []
-    for i, page in enumerate(front_pages):
-        combined_pages.append(front_pages[i])
-        combined_pages.append(back_pages[i])
-
     styles = []
     for card_type in list(set(card_types)):
         styles.append(url_for('get_style', game_name=game_name, file_name='{0}.css'.format(card_type)))
@@ -57,7 +45,7 @@ def display(game_name):
     default_stylesheet = url_for('static', filename='styles/default_cards.css')
 
     app.jinja_env.loader = old_loader
-    return render_template('cards.html', pages=combined_pages, styles=styles, style_global=global_stylesheet, style_default=default_stylesheet, style_print=print_stylesheet, style_print_adjust=print_adjust_stylesheet, columns=columns)
+    return render_template('cards.html', fronts=cards[True], backs=cards[False], styles=styles, style_global=global_stylesheet, style_default=default_stylesheet, style_print=print_stylesheet, style_print_adjust=print_adjust_stylesheet, columns=columns)
 
 
 @app.route('/<game_name>/resource/<file_name>')

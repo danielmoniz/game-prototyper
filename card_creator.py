@@ -34,19 +34,7 @@ def get_card_data(game_name, data_files=None, card_names=None):
 def build_card_object(data, game_name, index=0, front=True):
     card_type = card_helper.get_card_type(data)
 
-    card_settings = ConfigParser.ConfigParser()
-    settings_location = resource.get_location("cards.txt")
-    card_settings.read(settings_location)
-
-    try:
-        options = card_settings.options(card_type)
-    except ConfigParser.NoSectionError as e:
-        print 'Please create cards.txt to set up your card settings.'
-        print "data['name']:", data['name']
-        print "card_type:", card_type
-        raise e
-
-    card = card_helper.make_new_card(card_settings, data, game_name, index=index, front=front)
+    card = card_helper.make_new_card(data, game_name, index=index, front=front)
     card_helper.set_resources(card)
     card_helper.set_icons(card)
 

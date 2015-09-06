@@ -1,23 +1,11 @@
 
-div.page {
-  page-break-after: always;
-  display: inline-block;
-}
-
-div.page.back {
-  margin-left: 0;
-}
-
 div.page_container {
-    background-color: white;
-    border: none;
+  border: none;
+  /*box-sizing: border-box;*/
+  page-break-after: always;
 }
 
-div.page.back .cards {
-    justify-content: center;
-    /*color: red;*/
+div.max-page-size {
+  background-color: white;
 }
 
-div.page.front .cards {
-    justify-content: center;
-}

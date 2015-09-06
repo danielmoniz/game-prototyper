@@ -184,58 +184,5 @@ def make_page(cards, page_images, backs=False):
     make_page(cards[card_number:], page_images, backs)
 
 
-def group_cards_by_page(cards, pages, backs=False):
-    if len(cards) == 0:
-        return
-
-    margin = 0.35 * inch # standard margin is 0.25", but pages can be shifted
-    max_page_width = letter[0] - 2 * margin
-    max_page_height = letter[1] - 2 * margin
-    max_cards_wide = int(math.floor(max_page_width / cards[0].actual_width))
-    max_cards_high = int(math.floor(max_page_height / cards[0].actual_height))
-
-    cards_on_sheet = (max_cards_wide, max_cards_high)
-    card_size_pixels = cards[0].size
-    #card_size_pixels = cards[0].actual_size
-    page_size_pixels = (card_size_pixels[0] * cards_on_sheet[0], card_size_pixels[1] * cards_on_sheet[1])
-
-    page_image = Image.new("RGB", page_size_pixels, "white")
-    direction = 1
-    x_offset = 0
-    y_offset = 0
-    if backs:
-        x_offset = page_image.size[0] - card_size_pixels[0]
-        direction = -1
-
-    initial_x_offset = x_offset
-
-    card_number = 0
-    page = []
-    for card in cards:
-        page.append(card)
-        #print card.name
-        page_image.paste(card.image, (x_offset, y_offset))
-        card_number += 1
-        x_offset += card_size_pixels[0] * direction
-
-        if x_offset >= page_size_pixels[0]:
-            x_offset = initial_x_offset
-            y_offset += card_size_pixels[1]
-
-        if x_offset < 0: # going backwards
-            x_offset = initial_x_offset
-            y_offset += card_size_pixels[1]
-
-        if y_offset >= page_size_pixels[1]:
-            x_offset = 0
-            y_offset += card_size_pixels[1]
-            break
-
-    #page_images.append(page_image)
-    pages.append(page)
-    print '---'
-    group_cards_by_page(cards[card_number:], pages, backs)
-
-
 def run_print(args):
     print_cards(args.game_name, args.data_files, args.cards)

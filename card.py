@@ -74,23 +74,11 @@ class Card(BaseCard):
         return component
 
 
-def make_new_card(settings, data, game_name, index=0, front=True):
+def make_new_card(data, game_name, index=0, front=True):
     card = Card(index)
     card.game_name = game_name
 
     card.card_type = get_card_type(data)
-
-    set_card_settings(card, settings)
-
-    scale_factor = float(settings.get(card.card_type, 'scale_factor'))
-    card.width = int(float(settings.get(card.card_type, 'width')) * scale_factor * mm)
-    card.height = int(float(settings.get(card.card_type, 'height')) * scale_factor * mm)
-    card.actual_width = int(float(settings.get(card.card_type, 'width')) * mm)
-    card.actual_height = int(float(settings.get(card.card_type, 'height')) * mm)
-    card.actual_size = (card.actual_width, card.actual_height)
-    card.size = (card.width, card.height)
-
-    card.image = get_new_card_image(card, front)
 
     card.only_print = False
     card.no_print = False
@@ -128,30 +116,6 @@ def get_card_type(data):
     if 'card_type' in data and data['card_type'].strip():
         card_type = data['card_type'].strip()
     return card_type
-
-
-def set_card_settings(card, settings):
-    for setting in settings.options(card.card_type):
-        value = settings.get(card.card_type, setting)
-        try:
-            value = int(value)
-        except ValueError:
-            pass
-        if hasattr(card, setting) and getattr(card, setting):
-            logging.debug("Card property {0} already set! Pick another name.".format(setting))
-            continue
-        setattr(card, setting, value)
-
-
-def get_new_card_image(card, front=True):
-    # @TODO Make card colours configurable
-    colour = 'white'
-    if not front:
-        colour = '#D8D8D8'
-    image = Image.new("RGB", card.size)
-    image.paste('black') # black border
-    image.paste(colour, (card.border_width, card.border_width, card.size[0] - card.border_width, card.size[1] - card.border_width))
-    return image
 
 
 def save_card(card, location, file_name):
