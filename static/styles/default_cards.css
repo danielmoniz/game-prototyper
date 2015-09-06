@@ -1,0 +1,52 @@
+
+.card {
+    font-family: arial;
+    width: 6cm;
+    width: 170pt;
+    height: 8cm;
+    height: 227pt;
+    border: 3px solid black;
+    border-radius: 8px;
+    /* Box sizing must be here with border and have a height defined! */
+    box-sizing: border-box;
+    padding: 5px;
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.top.row {
+    display: flex;
+    flew-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.title {
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.requirements {
+    width: auto;
+    justify-content: flex-end;
+}
+
+.costs {
+    font-size: 10;
+}
+
+
+
+/*
+.card.main { 
+  position: relative;
+  font-family: arial;
+  border: 3px solid black;
+  width: 6cm;
+  height: 9cm;
+  padding: 2px;
+  background-image: url("http://demilked.uuuploads.com/free-paper-textures/free-paper-texture-2.jpg");
+  background-image: url("file://../../resources/front_background.jpg");
+  background-size: 6.1cm 9.1cm;
+}
+*/
+

@@ -213,7 +213,7 @@ def group_cards_by_page(cards, pages, backs=False):
     page = []
     for card in cards:
         page.append(card)
-        print card.name
+        #print card.name
         page_image.paste(card.image, (x_offset, y_offset))
         card_number += 1
         x_offset += card_size_pixels[0] * direction

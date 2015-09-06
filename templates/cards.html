@@ -1,0 +1,33 @@
+<html>
+
+<head>
+  <link href="{{ style_global }}" type="text/css" rel="stylesheet" />
+  <link href="{{ style_default }}" type="text/css" rel="stylesheet" />
+  <link href="{{ style_print }}" media='print' type="text/css" rel="stylesheet" />
+  {% for style in styles %}
+    <link href="{{ style }}" type="text/css" rel="stylesheet" />
+  {% endfor %}
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script type=text/javascript src="{{ url_for('static', filename='js/save.js') }}"></script>
+</head>
+
+<body>
+
+  {% for page in pages %}
+  <div class="page_container">
+    <div class="page {% if loop.index0 is divisibleby 2 %}front{% else %}back{% endif %}">
+      <div class="cards">
+	{% for card in page %}
+	<div class="card {{ card.card_type }} {{ card.front_or_back }}">
+	  {{ card.html | safe }}
+	</div>
+	{% endfor %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+</body>
+
+</html>

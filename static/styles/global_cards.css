@@ -1,0 +1,33 @@
+
+body {
+    margin: 0;
+}
+
+div.page_container {
+    /* 573pt is the precise width of a printed pdf.
+     * A safe border when printing is 0.25" (18pt). */
+    width: 573pt;
+    width: 544pt;
+    padding: 18pt;
+}
+
+div.page {
+    display: inline-block;
+    background-color: #E6E6E6;
+}
+
+div.page.back {
+}
+
+.cards {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.card {
+    /* Box sizing must be here with border and have a height defined! */
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    display: flex;
+    flex-flow: column wrap;
+}

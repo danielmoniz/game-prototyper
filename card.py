@@ -11,6 +11,13 @@ class BaseCard:
     def __init__(self, size, border_width, x_padding, y_padding):
         pass
 
+    def __getitem__(self, attr):
+        # A quick hack to allow for dynamic attribute retrieval in templates
+        try:
+            return getattr(self, attr)
+        except AttributeError:
+            return None
+
     def get_available_width(self, x_padding=None, one_side=False):
         if x_padding is None:
             x_padding = self.x_padding
@@ -174,9 +181,17 @@ def write_card_to_file(card, location, file_name=None):
 
 def set_resources(card):
 
-    with resource.open_file('requirements.txt') as f:
+    with resource.open_file('goods.txt') as f:
         lines = f.readlines()
         resources = [x.strip() for x in lines if bool(x.strip())]
-        # NOTE 'educated' should not be on the list of materials
         card.resources = resources
+
+
+def set_icons(card):
+
+    with resource.open_file('other_icons.txt') as f:
+        lines = f.readlines()
+        icons = [x.strip() for x in lines if bool(x.strip())]
+        card.icons = icons
+
 

@@ -48,6 +48,7 @@ def build_card_object(data, game_name, index=0, front=True):
 
     card = card_helper.make_new_card(card_settings, data, game_name, index=index, front=front)
     card_helper.set_resources(card)
+    card_helper.set_icons(card)
 
     return card
 
