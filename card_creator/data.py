@@ -25,14 +25,6 @@ def get_card_data(game_name, data_files=None, card_names=None):
     return formatted_data
 
 
-def build_card_object(data, game_name, index=0, front=True):
-    card = card_helper.Card(data, game_name, index=index, front=front)
-    card.set_resources()
-    card.set_icons()
-
-    return card
-
-
 def group_rows_by_card_name(data):
     """
     Look for instances of a row without a name that still has data.

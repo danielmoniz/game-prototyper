@@ -5,6 +5,9 @@ import resource
 class Card(object):
 
     def __init__(self, data, game_name, index=0, front=True):
+        self.icons = self.get_text_config('other_icons.txt')
+        self.resources = self.get_text_config('goods.txt')
+
         self.card_id = index
         self.game_name = game_name
 
@@ -45,17 +48,11 @@ class Card(object):
         except AttributeError:
             return None
 
-
-    def set_resources(self):
-        with resource.open_file('goods.txt') as f:
+    def get_text_config(self, file_name):
+        with resource.open_file(file_name) as f:
             lines = f.readlines()
-            resources = [x.strip() for x in lines if bool(x.strip())]
-            self.resources = resources
-
-    def set_icons(self):
-        with resource.open_file('other_icons.txt') as f:
-            lines = f.readlines()
-            icons = [x.strip() for x in lines if bool(x.strip())]
+            config = [x.strip() for x in lines if bool(x.strip())]
+            return config
             self.icons = icons
 
     def get_card_type(self, data):

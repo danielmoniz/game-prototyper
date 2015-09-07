@@ -3,7 +3,8 @@ from flask import render_template
 import jinja2
 from jinja2 import Environment, PackageLoader
 
-import card_creator
+from card_creator import data
+from card_creator import card as card_helper
 
 app = Flask(__name__)
 
@@ -21,14 +22,14 @@ def display(game_name):
     old_loader = app.jinja_env.loader
     app.jinja_env.loader = PackageLoader(game_name, 'cards')
 
-    all_card_data = card_creator.get_card_data(game_name, data_files=data_files, card_names=None)
+    all_card_data = data.get_card_data(game_name, data_files=data_files, card_names=None)
     columns = all_card_data[0].keys()
     cards = { True: [], False: [] }
 
     card_types = []
     for front in (True, False):
         for card_data in all_card_data:
-            card = card_creator.build_card_object(card_data, game_name, index=0, front=front)
+            card = card_helper.Card(card_data, game_name, index=0, front=front)
             if card.no_print:
                 continue
             cards[front].append(get_renderable_card(game_name, card))
