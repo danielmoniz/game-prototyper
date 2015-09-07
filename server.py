@@ -4,7 +4,6 @@ import jinja2
 from jinja2 import Environment, PackageLoader
 
 import card_creator
-import print_cards
 
 app = Flask(__name__)
 
