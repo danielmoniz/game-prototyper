@@ -16,6 +16,12 @@ def display(game_name):
     if data_file is None:
         data_files = None
 
+    use_backs = request.args.get('backs', 'true')
+    use_backs = use_backs.lower() == 'true'
+
+    search = request.args.get('search', '')
+    card_type = request.args.get('card_type', '')
+
     duplicates = request.args.get('duplicates', 'true')
     duplicates = duplicates.lower() == 'true'
 
@@ -27,13 +33,23 @@ def display(game_name):
     cards = { True: [], False: [] }
 
     card_types = []
-    for front in (True, False):
+    sides = (True, False)
+    if not use_backs: sides = (True,)
+    for front in sides:
         for card_data in all_card_data:
             card = card_helper.Card(card_data, game_name, index=0, front=front)
-            if card.no_print:
-                continue
-            cards[front].append(get_renderable_card(game_name, card))
             card_types.append(card.card_type)
+
+            quantity = range(card.quantity)
+            if not duplicates: quantity = range(1)
+            for i in quantity:
+                if (not card.card_type.startswith(card_type)
+                    or not card.name.lower().startswith(search.lower())
+                    or card.no_print):
+                    continue
+                card = card_helper.Card(card_data, game_name, index=i, front=front)
+                card.process(card, i + 1)
+                cards[front].append(get_renderable_card(game_name, card))
 
     styles = []
     for card_type in list(set(card_types)):

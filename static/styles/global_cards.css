@@ -7,7 +7,7 @@ div.page_container {
   /* 573pt is the precise width of a printed pdf.
    * A safe border when printing is 0.25" (18pt). */
   width: 573pt;
-  height: 743pt;
+  height: 742pt;
 
   border: 1pt solid black;
   padding: 20pt;
@@ -51,4 +51,5 @@ div.page {
     -webkit-box-sizing: border-box;
     display: flex;
     flex-flow: column wrap;
+    position: relative;
 }

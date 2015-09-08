@@ -40,10 +40,12 @@ $(function() {
       if (current_page.height() > current_container.height()) {
         card.remove();
 
-        var back_page = add_back_page(backs, start_index, i);
-        var back_container = get_container('back');
-        back_container.append(back_page);
-        start_index = i;
+        if (backs.length > 0) {
+          var back_page = add_back_page(backs, start_index, i);
+          var back_container = get_container('back');
+          back_container.append(back_page);
+          start_index = i;
+        }
 
         current_container = get_container('front');
         current_page = get_page('front');
@@ -52,9 +54,11 @@ $(function() {
       }
     }
 
-    var back_page = add_back_page(backs, start_index, backs.length);
-    var back_container = get_container('back');
-    back_container.append(back_page);
+    if (backs.length > 0) {
+      var back_page = add_back_page(backs, start_index, backs.length);
+      var back_container = get_container('back');
+      back_container.append(back_page);
+    }
   }
 
   function add_back_page(backs, start, end) {

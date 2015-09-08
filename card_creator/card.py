@@ -1,4 +1,6 @@
 import logging
+import sys
+import imp
 
 import resource
 
@@ -40,6 +42,21 @@ class Card(object):
                 logging.debug("Card property '{0}' already set! Pick another name.".format(key))
                 continue
             setattr(self, key, value)
+
+        if self.quantity == '':
+            self.quantity = 1
+
+        file_name = "{0}.py".format(game_name)
+        file_path = "./{0}/{1}".format(game_name, file_name)
+
+        def process(self): pass
+        self.process = process
+        try:
+            process_module = imp.load_source(file_name, file_path)
+            self.process = process_module.process
+        except IOError as e:
+            pass
+
 
     def __getitem__(self, attr):
         # A quick hack to allow for dynamic attribute retrieval in templates
