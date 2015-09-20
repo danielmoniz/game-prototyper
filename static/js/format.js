@@ -64,7 +64,18 @@ $(function() {
   function add_back_page(backs, start, end) {
     var page = get_page('back');
     for (var i=start; i<end; i++) {
-      page.append(backs[i]);
+      var card = backs[i];
+      var back_text = $.trim($(card).text());
+
+      if (back_text == 'SAME AS FRONT') {
+        var front_page = $('.page.front:last');
+        var index = i + 1;
+        var front_card = front_page.children().filter(':nth-child('+ index +')')[0];
+        page.append($(front_card).clone());
+        card.remove();
+      } else {
+        page.append(card);
+      }
     }
     return page;
   }
