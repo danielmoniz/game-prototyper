@@ -7,6 +7,7 @@ from card_creator import data
 from card_creator import card as card_helper
 
 app = Flask(__name__)
+#app.jinja_env.add_extension('utils.jinja2htmlcompress.HTMLCompress')
 
 
 @app.route('/<game_name>/')
@@ -150,15 +151,14 @@ def replace_items_with_tokens(text, item_list, template):
     for i, chunk in enumerate(chunks):
         for item in item_list:
             if item in chunk:
-                index = chunk.index(item)
-                try:
-                    # text is escaped, so remove escape char and move on
-                    if chunk[index-1] == '\\':
-                        chunks[i] = chunk.replace( '\\' + item, item)
-                        continue
-                except IndexError:
-                    pass
-                chunks[i] = chunk.replace(item, template.format(item))
+                # ignore items with a backslash prepended and replace others
+                # NOTE: this code cannot handle (say) 'graingrainsgrain'
+                # because the loop will break before dealing with both 'grain'
+                # and 'grains'
+                chunk = chunk.replace('\\' + item, '@#$%^')
+                chunk = chunk.replace(item, template.format(item))
+                chunk = chunk.replace('@#$%^', item)
+                chunks[i] = chunk
                 break
     return ' '.join(chunks)
 
