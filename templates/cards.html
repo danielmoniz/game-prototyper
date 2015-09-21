@@ -8,6 +8,9 @@
   {% for style in styles %}
     <link href="{{ style }}" type="text/css" rel="stylesheet" />
   {% endfor %}
+  <style>
+    {{ icon_styles | safe }}
+  </style>
 
   <script src="{{ url_for('static', filename='js/jquery-2.1.4.js') }}"></script>
   <script type=text/javascript src="{{ url_for('static', filename='js/format.js') }}"></script>

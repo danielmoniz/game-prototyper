@@ -1,0 +1,12 @@
+
+{%- for resource_block in resources -%}
+  {% set resource_names = resource_block.split() %}
+  {% set resource_name = resource_names[0] %}
+
+  {%- for resource in resource_names -%}
+    img.icon.{{ resource | lower }} {
+    content:url("/{{ game_name }}/resource/{{ resource_name | lower }}.png");
+  }
+  {% endfor -%}
+{%- endfor -%}
+
