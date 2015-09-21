@@ -147,19 +147,22 @@ def word_tokenize(text):
 
 
 def replace_items_with_tokens(text, item_list, template):
+    print "text:", text
     chunks = text.split()
     for i, chunk in enumerate(chunks):
-        for item in item_list:
-            if item in chunk:
-                # ignore items with a backslash prepended and replace others
-                # NOTE: this code cannot handle (say) 'graingrainsgrain'
-                # because the loop will break before dealing with both 'grain'
-                # and 'grains'
-                chunk = chunk.replace('\\' + item, '@#$%^')
-                chunk = chunk.replace(item, template.format(item))
-                chunk = chunk.replace('@#$%^', item)
-                chunks[i] = chunk
-                break
+        for item_block in item_list:
+            for item in item_block.split()[::-1]:
+                if item in chunk:
+                    # ignore items with a backslash prepended and replace others
+                    # NOTE: this code cannot handle (say) 'graingrainsgrain'
+                    # because the loop will break before dealing with both 'grain'
+                    # and 'grains'
+                    chunk = chunk.replace('\\' + item, '@#$%^')
+                    chunk = chunk.replace(item, template.format(item))
+                    chunk = chunk.replace('@#$%^', item)
+                    chunks[i] = chunk
+                    break
+
     return ' '.join(chunks)
 
 
