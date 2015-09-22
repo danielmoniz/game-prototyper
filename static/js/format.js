@@ -69,9 +69,9 @@ $(function() {
 
       if (back_text == 'SAME AS FRONT') {
         var front_page = $('.page.front:last');
-        var index = i + 1;
-        var front_card = front_page.children().filter(':nth-child('+ index +')')[0];
-        page.append($(front_card).clone());
+        var index = i % front_page.children().length + 1;
+        var front_card = front_page.children().filter(':nth-child('+ index +')');
+        page.append(front_card.clone());
         card.remove();
       } else {
         page.append(card);
