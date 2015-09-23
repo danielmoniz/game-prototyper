@@ -42,7 +42,7 @@ def display(game_name):
             card_types.append(card.card_type)
 
             quantity = range(card.quantity)
-            if not duplicates: quantity = range(1)
+            if not duplicates: quantity = range(min(card.quantity, 1))
             for i in quantity:
                 if (not card.card_type.startswith(card_type)
                     or not card.name.lower().startswith(search.lower())
