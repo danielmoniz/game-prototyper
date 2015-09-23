@@ -65,6 +65,7 @@ class Card(object):
         except AttributeError:
             return None
 
+    @classmethod
     def get_text_config(self, file_name):
         with resource.open_file(file_name) as f:
             lines = f.readlines()

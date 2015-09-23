@@ -62,7 +62,9 @@ def display(game_name):
     default_stylesheet = url_for('static', filename='styles/default_cards.css')
 
     app.jinja_env.loader = old_loader
-    icon_styles = get_icon_styles(game_name, cards[True][0].resources, cards[True][0].icons)
+    resources = card_helper.Card.get_text_config('goods.txt')
+    other_icons = card_helper.Card.get_text_config('other_icons.txt')
+    icon_styles = get_icon_styles(game_name, resources, other_icons)
 
     return render_template('cards.html', fronts=cards[True], backs=cards[False], styles=styles, icon_styles=icon_styles, style_global=global_stylesheet, style_default=default_stylesheet, style_print=print_stylesheet, style_print_adjust=print_adjust_stylesheet, columns=columns)
 
