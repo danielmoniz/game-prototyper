@@ -49,7 +49,7 @@ class Card(object):
         file_name = "{0}.py".format(game_name)
         file_path = "./{0}/{1}".format(game_name, file_name)
 
-        def process(self): pass
+        def process(self, *args, **kwargs): pass
         self.process = process
         try:
             process_module = imp.load_source(file_name, file_path)
