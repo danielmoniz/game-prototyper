@@ -92,17 +92,10 @@ sample_project/attributions.txt . All icons seen were collected via the image
 bootstrapping script. Thanks to Jonas De Ro (http://jonasdero.deviantart.com/)
 for the fantastic medieval artwork.
 
-A legend of all the symbols:
-![alt tag](https://raw.github.com/danielmoniz/game-prototyper/master/sample_project/samples/legend.png)
-
-![alt tag](https://raw.github.com/danielmoniz/game-prototyper/master/sample_project/samples/farm_front.png)
-![alt tag](https://raw.github.com/danielmoniz/game-prototyper/master/sample_project/samples/cellar-orchard.png)
-![alt tag](https://raw.github.com/danielmoniz/game-prototyper/master/sample_project/samples/orchard_back.png)
-![alt tag](https://raw.github.com/danielmoniz/game-prototyper/master/sample_project/samples/build.png)
-![alt tag](https://raw.github.com/danielmoniz/game-prototyper/master/sample_project/samples/harsh weather.png)
-![alt tag](https://raw.github.com/danielmoniz/game-prototyper/master/sample_project/samples/mild weather-drought.png)
-![alt tag](https://raw.github.com/danielmoniz/game-prototyper/master/sample_project/samples/seasons.png)
-
-An example of a non-standard 'card':
-![alt tag](https://raw.github.com/danielmoniz/game-prototyper/master/sample_project/samples/score sheet.png)
+![](https://raw.github.com/danielmoniz/game-prototyper/master/sample_project/samples/seasons.png)
+![](https://raw.github.com/danielmoniz/game-prototyper/master/sample_project/samples/cellar.png)
+![](https://raw.github.com/danielmoniz/game-prototyper/master/sample_project/samples/cellar backs.png)
+![](https://raw.github.com/danielmoniz/game-prototyper/master/sample_project/samples/score sheet.png)
+![](https://raw.github.com/danielmoniz/game-prototyper/master/sample_project/samples/village cards with legend.png)
+![](https://raw.github.com/danielmoniz/game-prototyper/master/sample_project/samples/village town cards.png)
 
