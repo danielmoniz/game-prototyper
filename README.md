@@ -92,10 +92,17 @@ sample_project/attributions.txt . All icons seen were collected via the image
 bootstrapping script. Thanks to Jonas De Ro (http://jonasdero.deviantart.com/)
 for the fantastic medieval artwork.
 
-![alt tag](https://raw.github.com/danielmoniz/game-prototyper/master/sample_project/samples/drought.png)
-![alt tag](https://raw.github.com/danielmoniz/game-prototyper/master/sample_project/samples/fishing nets.png)
-![alt tag](https://raw.github.com/danielmoniz/game-prototyper/master/sample_project/samples/irrigation.png)
-![alt tag](https://raw.github.com/danielmoniz/game-prototyper/master/sample_project/samples/score sheet.png)
-![alt tag](https://raw.github.com/danielmoniz/game-prototyper/master/sample_project/samples/seasons.png)
+A legend of all the symbols:
 ![alt tag](https://raw.github.com/danielmoniz/game-prototyper/master/sample_project/samples/legend.png)
+
+![alt tag](https://raw.github.com/danielmoniz/game-prototyper/master/sample_project/samples/farm_front.png)
+![alt tag](https://raw.github.com/danielmoniz/game-prototyper/master/sample_project/samples/cellar-orchard.png)
+![alt tag](https://raw.github.com/danielmoniz/game-prototyper/master/sample_project/samples/orchard_back.png)
+![alt tag](https://raw.github.com/danielmoniz/game-prototyper/master/sample_project/samples/build.png)
+![alt tag](https://raw.github.com/danielmoniz/game-prototyper/master/sample_project/samples/harsh weather.png)
+![alt tag](https://raw.github.com/danielmoniz/game-prototyper/master/sample_project/samples/mild weather-drought.png)
+![alt tag](https://raw.github.com/danielmoniz/game-prototyper/master/sample_project/samples/seasons.png)
+
+An example of a non-standard 'card':
+![alt tag](https://raw.github.com/danielmoniz/game-prototyper/master/sample_project/samples/score sheet.png)
 

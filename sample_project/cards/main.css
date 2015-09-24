@@ -206,38 +206,6 @@ div.seasons .seasons.winter {
   content: url("../resource/seasons_winter.png");
 }
 
-.card.front .art-primary.building-category.food:after {
-  background-image:url("../resource/card_type-food.png");
-}
-
-.card.front .art-primary.building-category.trade:after {
-  background-image:url("../resource/card_type-trade.png");
-}
-
-.card.front .art-primary.building-category.entertainment:after {
-  background-image:url("../resource/card_type-entertainment.png");
-}
-
-.card.front .art-primary.building-category.production:after {
-  background-image:url("../resource/card_type-production.png");
-}
-
-.card.front .art-primary.building-category.housing:after {
-  background-image:url("../resource/card_type-housing.png");
-}
-
-.card.front .art-primary.building-category.education:after {
-  background-image:url("../resource/card_type-education.png");
-}
-
-.card.front .art-primary.building-category.luxury:after {
-  background-image:url("../resource/card_type-luxury.png");
-}
-
-.card.front .art-primary.building-category.water:after {
-  background-image:url("../resource/card_type-water.png");
-}
-
 .tiny {
   /*flex-basis: 8pt;*/
   max-width: 14pt;
