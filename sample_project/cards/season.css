@@ -1,0 +1,57 @@
+
+.front.season .demand {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 140px;
+}
+
+.card.season .top.row {
+  height: 28px;
+}
+
+.card.season .text {
+  font-size: 15px;
+}
+
+.card.season .rule-text.info {
+  font-size: 12px;
+}
+
+.card.season.front div.art-primary:after {
+  background-image: none;
+}
+
+div.art-primary.icon.season {
+  content: none;
+  border: none;
+}
+
+.text-item div.seasons {
+    position: relative;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+.text-item div.seasons img {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+div.icon.season.spring {
+  background-image: url("/sample_project/resource/spring.png");
+}
+
+div.icon.season.summer {
+  background-image: url("/sample_project/resource/summer.png");
+}
+
+div.icon.season.harvest, div.icon.season.autumn {
+  background-image: url("/sample_project/resource/autumn.png");
+}
+
+div.icon.season.winter {
+  background-image: url("/sample_project/resource/winter.png");
+}
+

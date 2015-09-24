@@ -1,0 +1,16 @@
+
+#Remove
+Prosperity
+
+spring {rain}
+summer {sunshine}
+autumn
+winter {snowflake}
+
+educated
+trader
+architect
+doctor
+
+active
+passive

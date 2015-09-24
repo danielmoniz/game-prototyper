@@ -48,7 +48,6 @@ div.page {
 .card {
     /* Box sizing must be here with border and have a height defined! */
     box-sizing: border-box;
-    -webkit-box-sizing: border-box;
     display: flex;
     flex-flow: column wrap;
     position: relative;

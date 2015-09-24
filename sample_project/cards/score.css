@@ -1,0 +1,62 @@
+
+.card.score {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    border: 3px solid black;
+    padding: 5px;
+}
+
+.card.score .body {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  height: 100%;
+}
+
+.card.score .body {
+
+}
+
+.card.score .grid {
+  display: flex;
+  flex-flow: row wrap;
+  border: 1px solid black;
+  flex-grow: 1;
+}
+
+.card.score .grid-cell {
+  border: 1px solid black;
+  flex: 1 1 10%;
+  padding: 2px;
+  box-sizing: border-box;
+  /*display: flex;*/
+}
+
+.card.score .tier {
+  background-color: red;
+}
+
+.card.score .prosperity {
+  font-size: 14px;
+  /*height: 35px;*/
+  /*margin-right: 5px;*/
+}
+
+.card.score .content {
+  min-height: 60px;
+}
+
+.card.score div.game-start {
+  background: url("../resource/start.png") no-repeat center bottom;
+  background-size: contain;
+}
+
+.game-end {
+  background-color: white;
+}
+
+.card.score div.game-end {
+  background: url("../resource/finish.png") repeat top left;
+}
+

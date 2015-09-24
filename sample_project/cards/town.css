@@ -1,0 +1,45 @@
+
+.card.town .gap {
+  height: 53pt;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.card.town .tier {
+  border-radius: 4px;
+  border: 1px solid black;
+  padding: 2px;
+  text-align: center;
+  font-size: 22px;
+}
+
+.card.back.town {
+  justify-content: space-between;
+}
+
+.card.town .info {
+  font-style: normal;
+}
+
+.card.town .top.row {
+  /*margin-top: 53pt;*/
+  margin-bottom: 5px;
+  height: auto;
+  justify-content: center;
+}
+
+.card.town .text-item.description {
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.card.town .text-item.description * {
+  font-style: italic;
+  font-size: 9px;
+}
+
+.card.town .text-item {
+  font-size: 11px;
+}
+

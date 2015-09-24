@@ -1,0 +1,50 @@
+
+<div class="body">
+  <div class='title'>
+    <h1>Prosperity Points</h1>
+  </div>
+  {% set tier_data = card.text[0].split(', ') %}
+  {% set tier_index = 1 %}
+  {% set game_start = tier_data[0] | int %}
+  {% set game_end = tier_data[-1] | int %}
+  {% set tiers = tier_data[1:-1] %}
+  {% set tier_names = ['Encampment', 'Settlement', 'Hamlet', 'Village'] %}
+  
+  <div class='grid'>
+    {% for i in range(0, 101) %}
+      {% set count = i %}
+	{% set tier = '' %}
+	{% set tier_class = '' %}
+	{% set extra = '' %}
+
+	{% if count == game_start %}
+	  {% set tier_class = 'game-start' %}
+	{% endif %}
+
+	{% if count | string in tiers %}
+	  {% set tier = tiers.index(count|string) + 1 %}
+	  {% set tier_class = 'tier' + tier|string %}
+	{% endif %}
+
+	{% if count == game_end %}
+	  {% set tier_class = 'game-end' %}
+	  {% set extra %}
+	  <div>Winner declared at end of turn!</div>
+	  {% endset %}
+	{% endif %}
+
+	<div class="grid-cell {{ tier }} {{ tier_class }}">
+	  <div class='content'>
+	    <div class="prosperity">{{ count }}</div>
+	    {% if tier %}
+	      <i>{{ tier_names[tier - 1] }}</i><br />
+	      (Tier {{ tier }})
+	    {% endif %}
+	    {{ extra | safe }}
+	  </div>
+	</div>
+
+    {% endfor %}
+  </div>
+</div>
+

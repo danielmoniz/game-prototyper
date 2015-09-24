@@ -1,0 +1,34 @@
+
+tree trees {evergreen}
+
+wood {logs}
+metal
+stone {boulder}
+
+bread
+fruit {apple}
+meat
+milk
+fish
+vegetable vegetables {carrot}
+
+grain {wheat}
+paper
+wool
+tool tools {wrench}
+clothing
+
+cow cows
+pig pigs
+sheep
+
+wine
+pastry pastries
+jewelry
+cream
+
+caravan caravans
+ship ships {sailboat}
+
+kindling {firewood}
+

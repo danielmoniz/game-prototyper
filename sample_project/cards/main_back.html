@@ -1,0 +1,31 @@
+
+<div class='title'>{{ card.name }}</div>
+
+<div class="costs">
+  {% for resource_block in card.resources %}
+  {% for resource in resource_block.split() %}
+  {% if card[resource] %}
+  {% for i in range(card[resource] | int) %}
+  <img class="resource icon {{ resource }} large" />
+  {% endfor %}
+  {% endif %}
+  {% endfor %}
+  {% endfor %}
+
+  {% if card.requirements %}
+    {% if card.requirements is string %}
+    <img class="resource icon {{ card.requirements }} large" />
+    {% else %}
+      {% for requirement in card.requirements %}
+      <img class="resource icon {{ requirement }} large" />
+      {% endfor %}
+    {% endif %}
+  {% endif %}
+</div>
+
+{% if card.tier %}
+<div class='tier-indicator tier{{ card.tier }}'>
+  <div class='num-players'>{{ card.players_required }}</div>
+</div>
+{% endif %}
+

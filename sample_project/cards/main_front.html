@@ -1,0 +1,87 @@
+
+{% import 'macros.html' as macros %}
+
+<div class='top row'>
+  <div class='title'>{{ card.name }}</div>
+
+  <div class="costs">
+
+    <div class="requirements">
+      {% if card.requirements %}
+      <div class="cost">
+	{% if card.requirements is string %}
+	<img class="resource icon {{ card.requirements }} small" />
+	{% else %}
+	{% for requirement in card.requirements %}
+	<img class="resource icon {{ requirement }} small" />
+	{% endfor %}
+	{% endif %}
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="building-costs">
+      {% for resource_data in card.resources %}
+      {% set resource = resource_data.split()[0] %}
+      {% if card[resource] %}
+      <div class="cost">
+	<div>{{ card[resource] }}</div><img class="resource icon small {{ resource }}" />
+      </div>
+      {% endif %}
+      {% endfor %}
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="card_body">
+  <div class="demand art-primary building-category {{ card.building_category[0] }}">
+    {%- if card.demand -%}
+    <div class="input">
+      {% set demand = card.demand.split(' -> ') %}
+      {% set input = demand[0] %}
+      {% set output = demand[1] %}
+      {% set input = input|replace(',', '+') %}
+      {% set inputs = input.split('+') %}
+
+      {% for item in inputs %}
+	{% set item = item.strip().split(' ', 1) %}
+	{% if item[1] %}
+	{% set quantity, resource = item %}
+	{% else %}
+	{% set quantity = 1 %}
+	{% set resource = item[0] %}
+	{% endif %}
+
+	  {% for i in range(quantity | int) %}
+	  <img class="resource icon {{ resource }} large" />
+	  {% endfor %}
+
+      {% endfor %}
+    </div>
+
+    {% if output %}
+    <img class="icon input-arrow medium" />
+    <div class="output">
+      {{ macros.replace_with_icons(output | format_body_text, card.icons, card.resources) }}
+    </div>
+    {% endif %}
+
+    {%- endif -%}
+  </div>
+
+  <div class="text">
+    {% for item in card.text %}
+    <div class="text-item">
+      {{ macros.add_body_text(card, item) }}
+    </div>
+    {% endfor %}
+
+  </div>
+</div>
+
+{% if card.tier %}
+  <div class='tier-indicator tier{{ card.tier }}'></div>
+{% endif %}

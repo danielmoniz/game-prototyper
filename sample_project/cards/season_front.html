@@ -1,0 +1,21 @@
+
+{% import 'macros.html' as macros %}
+
+<div class='top row'>
+  <div class='title'>{{ card.name }}</div>
+</div>
+
+<div class="card_body">
+  <div class="demand art-primary icon season {{ card.name.lower() }}">
+  </div>
+
+  <div class="text">
+    {% for item in card.text %}
+    <div class="text-item">
+      {{ macros.add_body_text(card, item, 'small') }}
+    </div>
+    {% endfor %}
+
+  </div>
+</div>
+

@@ -1,0 +1,90 @@
+
+{% macro replace_with_icons(text, replace_icon_names, add_icon_names) %}
+  {# @TODO Figure out why this line is needed!!  #}
+  {% set text = text|replace_items_with_tokens([], text_template) %}
+
+  {% set text_template = "<img class='resource icon tiny {0}' />" %}
+  {% set text = text|replace_items_with_tokens(replace_icon_names, text_template) %}
+  {% set text_template = "<img class='resource icon tiny {0}' />" %}
+  {% set text = text|replace_items_with_tokens(add_icon_names, text_template) %}
+  {{ text | safe }}
+
+{% endmacro %}
+
+{% macro add_icons(item, size) %}
+  {% set icons = False %}
+  {% if " (passive)" in item %}
+  {% set item = item.replace(' (passive)', '') %}
+  <img class="icon {{ size }} passive" />
+  {% set icons = True %}
+  {% elif " (active)" in item or " when used" in item %}
+  {% set item = item|replace(' when used', '') %}
+  {% set item = item|replace(' (active)', '') %}
+  <img class="icon {{ size }} active" />
+  {% set icons = True %}
+  {% else %}
+  {% set style_class = "info" %}
+  {% endif %}
+
+  {% set seasons = item.split(':', 1) %}
+  {{ add_requirements(seasons, size) }}
+  {#
+  {% if seasons|length == 2 %}
+  {% for season in seasons[0].split(',') %}
+  <img class="icon {{ size }} season {{ season }}" />
+  {% endfor %}
+
+  {% set item = seasons[1] %}
+  {% set icons = True %}
+  {% endif %}
+  #}
+
+{% endmacro %}
+
+{# Test - build seasons object by overlapping images #}
+{% macro add_seasons(seasons) %}
+  <div class="seasons icon small">
+  {%- if seasons|length == 2 -%}
+    {% for season in seasons[0].split(',') %}
+    <img class="icon small seasons {{ season }}" />
+    {% endfor %}
+  {%- endif -%}
+  </div>
+{% endmacro %}
+
+{% macro add_requirements(requirements, size) %}
+  {% if requirements|length == 2 %}
+    {% for requirement in requirements[0].split(',') %}
+    <img class="icon {{ size|default('tiny') }} requirement {{ requirement.strip() }}" />
+    {% endfor %}
+  {% endif %}
+{% endmacro %}
+
+{% macro strip_icon_text(item) %}
+  {% set item = item.replace(' (passive)', '') %}
+  {% set item = item|replace(' when used', '') %}
+  {% set item = item|replace(' (active)', '') %}
+
+  {% set seasons = item.split(':', 1) %}
+  {% if seasons|length == 2 %}
+    {% set item = seasons[1] %}
+  {% endif %}
+
+  {{ item }}
+{% endmacro %}
+
+{% macro add_body_text(card, item, size) %}
+  {% set icons = add_icons(item, size|default('tiny')) %}
+  {% if icons.strip() %}
+    <span class='icons'>
+      {{ icons }}
+    </span>
+  {% endif %}
+
+  {% set stripped = strip_icon_text(item) %}
+  <span class="rule-text {% if not icons.strip() %}info{% endif %}">
+    {% set replaced = replace_with_icons(stripped, card.icons, card.resources) %}
+    {{ replaced | format_body_text | safe }}
+  </span>
+{% endmacro %}
+

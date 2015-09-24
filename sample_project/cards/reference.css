@@ -1,0 +1,16 @@
+
+.card.front.reference .top.row {
+  height: 23px;
+}
+
+.card.front.reference .card_body {
+  height: 67%;
+}
+
+.card.reference .text {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: flex-start;
+  /*align-content: space-around;*/
+  height: 100%;
+}

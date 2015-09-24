@@ -1,0 +1,32 @@
+
+{% import 'macros.html' as macros %}
+
+<div class='gap'>
+</div>
+
+<div class='top row'>
+  <div class='title'>{{ card.name }}</div>
+</div>
+
+<div class="card_body">
+
+  <div class="text">
+    {% for item in card.text %}
+      {% if loop.index0 == 0 %}
+	<div class="text-item description">
+	  {{ macros.add_body_text(card, item, 'small') }}
+	</div>
+      {% else %}
+	<div class="text-item">
+	  {{ macros.add_body_text(card, item, 'small') }}
+	</div>
+      {% endif %}
+    {% endfor %}
+
+  </div>
+</div>
+
+{% if card.tier %}
+<div class='tier-indicator tier{{ card.tier }}'></div>
+{% endif %}
+

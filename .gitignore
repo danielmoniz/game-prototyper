@@ -4,3 +4,4 @@ printouts
 *.pyc
 
 village
+*_api_keys.txt

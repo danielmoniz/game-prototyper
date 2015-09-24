@@ -1,0 +1,162 @@
+Medieval landscape
+    Jonas De Ro
+    http://jonasdero.deviantart.com/
+Play/start icon
+  play by John Chapman from the Noun Project
+
+tree
+	License: creative-commons-attribution
+	Tree by Shirley Wu from Noun Project
+wood
+	License: creative-commons-attribution
+	Wood by Norbert de Graaff from Noun Project
+metal
+	License: creative-commons-attribution
+	Metal by Rodrigo Vidinich from Noun Project
+stone
+	License: creative-commons-attribution
+	rock by John Maravelakis from Noun Project
+bread
+	License: creative-commons-attribution
+	Bread by Edward Boatman from Noun Project
+bread3
+	License: creative-commons-attribution
+	Bread by Bruno Gätjens González from Noun Project
+fruit
+	License: creative-commons-attribution
+	Apple by Edward Boatman from Noun Project
+fruit2
+	License: creative-commons-attribution
+	Apple by Michell Tateoka from Noun Project
+fruit3
+	License: creative-commons-attribution
+	Apple by kimberly chandler from Noun Project
+meat
+	License: creative-commons-attribution
+	Meat by Christopher T. Howlett from Noun Project
+milk
+	License: creative-commons-attribution
+	Milk by Edward Boatman from Noun Project
+milk2
+	License: creative-commons-attribution
+	Milk by Jeff Seevers from Noun Project
+milk3
+	License: creative-commons-attribution
+	Milk by Kate Vogel from Noun Project
+fish
+	License: creative-commons-attribution
+	Fish by Edward Boatman from Noun Project
+fish2
+	License: creative-commons-attribution
+	Fish by Laurent Patain from Noun Project
+vegetable
+	License: creative-commons-attribution
+	Carrot by Kate Vogel from Noun Project
+paper
+	License: creative-commons-attribution
+	Paper by Tom Schott from Noun Project
+wool
+	License: creative-commons-attribution
+	Wool by Callum Taylor from Noun Project
+clothing3
+	License: creative-commons-attribution
+	clothing by Housin Aziz from Noun Project
+cow3
+	License: creative-commons-attribution
+	Cow by Olivier Guin from Noun Project
+pig2
+	License: creative-commons-attribution
+	Pig by aLf from Noun Project
+sheep
+	License: creative-commons-attribution
+	Sheep by Federico Ratta from Noun Project
+sheep2
+	License: creative-commons-attribution
+	Sheep by Razlan Hanafiah from Noun Project
+sheep3
+	License: creative-commons-attribution
+	Sheep by Rafaël Massé from Noun Project
+wine
+	License: creative-commons-attribution
+	Wine by Edward Boatman from Noun Project
+wine2
+	License: creative-commons-attribution
+	Wine by Edward Boatman from Noun Project
+wine3
+	License: creative-commons-attribution
+	Wine by Edward Boatman from Noun Project
+pastry
+	License: creative-commons-attribution
+	Croissant by Nicolas Molès from Noun Project
+jewelry
+	License: creative-commons-attribution
+	Ring by Christopher T. Howlett from Noun Project
+cream
+	License: creative-commons-attribution
+	Cream by WARPAINT Media Inc. from Noun Project
+cream2
+	License: creative-commons-attribution
+	Cream by gayatri from Noun Project
+caravan
+	License: creative-commons-attribution
+	caravan by Matthew Bailey from Noun Project
+ship
+	License: creative-commons-attribution
+	sailboat by Richard Zeid from Noun Project
+Prosperity
+	License: creative-commons-attribution
+	Light Bulb by Till Teenck from Noun Project
+spring
+	License: creative-commons-attribution
+	Rain by Edward Boatman from Noun Project
+summer
+	License: creative-commons-attribution
+	Sunshine by Creative Stall from Noun Project
+autumn
+	License: creative-commons-attribution
+	autumn by Ryan Canning from Noun Project
+autumn2
+	License: creative-commons-attribution
+	autumn by Ryan Canning from Noun Project
+autumn3
+	License: creative-commons-attribution
+	autumn by Ahmed Elzahra from Noun Project
+educated
+	License: creative-commons-attribution
+	Mortar Board by Stephen JB Thomas from Noun Project
+trader
+	License: creative-commons-attribution
+	Handshake by Romain Tourneret from Noun Project
+architect
+	License: creative-commons-attribution
+	Architect by Augusto Zamperlini from Noun Project
+active
+	License: creative-commons-attribution
+	Bluetooth by Mister Pixel from Noun Project
+
+--------------------
+
+tree
+	License: creative-commons-attribution
+	Tree by Shirley Wu from Noun Project
+
+--------------------
+
+passive
+	License: creative-commons-attribution
+	sleep by DonBLC from Noun Project
+passive2
+	License: creative-commons-attribution
+	sleep by Rémy Médard from Noun Project
+
+--------------------
+
+active
+	License: creative-commons-attribution
+	Move by P.J. Onori from Noun Project
+active2
+	License: creative-commons-attribution
+	Move by P.J. Onori from Noun Project
+active3
+	License: creative-commons-attribution
+	Move by P.J. Onori from Noun Project

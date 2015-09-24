@@ -1,0 +1,303 @@
+
+body {
+    font-family: arial;
+    font-size: 9px;
+}
+
+.card {
+    width: 50mm;
+    width: 142pt;
+    height: 75mm;
+    height: 213pt;
+    background-size: cover;
+    border: 3px solid black;
+    padding: 5px;
+}
+
+.card.main {
+    width: 50mm;
+    width: 142pt;
+    height: 75mm;
+    height: 213pt;
+}
+
+
+.card.front {
+    background-image: url("../resource/background_front.jpg");
+}
+
+.card.back {
+    background-image: url("../resource/background_back.jpg");
+}
+
+.card.main.front {
+}
+
+.card.main.back {
+    display: flex;
+    text-align: center;
+}
+
+.top.row {
+    display: flex;
+    flew-flow: row nowrap;
+    justify-content: space-between;
+    /*border-bottom: 1px solid black;*/
+    height: 42px;
+}
+
+.title {
+    font-weight: bold;
+}
+
+.card.front .title {
+    font-size: 18px;
+}
+
+.card.back .title {
+    display: flex;
+    flex-wrap: nowrap;
+    font-size: 26px;
+    align-self: center;
+    align-content: center;
+    text-align: center;
+    height: 62px;
+}
+
+.requirements {
+    width: auto;
+    justify-content: flex-end;
+    /*flex-direction: column;*/
+}
+
+.costs {
+    font-size: 10;
+}
+
+.card.front .costs {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    flex-direction: column;
+    flex-direction: row;
+    min-width: 45px;
+}
+
+.card.front .building-costs {
+  padding-left: 2px;
+}
+
+.card.front .cost {
+    display: flex;
+    /*justify-content: center;*/
+    align-items: center;
+    flex-direction: row;
+}
+
+.card.front .requirements .cost {
+  flex-direction: column;
+}
+
+.card.front .cost * {
+  padding: 0 1px;
+}
+
+.card.back .costs {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.card.front .card_body {
+  display: flex;
+  flex-direction: column;
+}
+
+.card.front .demand {
+  display: flex;
+  justify-content: space-between;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  align-content: flex-start;
+  padding: 2px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  text-align: center;
+  min-height: 110px;
+  margin-bottom: 5px;
+}
+
+.card.front .art-primary {
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.card.front .art-primary:after {
+  content: ' ';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Not sure why this needs to be negative */
+
+  background-image: url("../resource/medieval landscape.jpg");
+  background-size: cover;
+  background-position: 50% 0;
+  opacity: 0.25;
+}
+
+.card.front .demand > * {
+    margin: 2px 0;
+}
+
+.card.front .input {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /*padding: 2px;*/
+    width: 100%;
+}
+
+.card.front .text-item {
+  display: flex;
+  /*align-items: center;*/
+  justify-content: flex-start;
+
+  margin-bottom: 3px;
+}
+
+.card.front .text-item span.icons {
+  display: flex;
+  margin-right: 3px;
+}
+
+.card.front .text-item span.icons img.icon {
+  margin-right: 1px;
+}
+
+.info {
+  font-style: italic;
+}
+
+img.icon.input-arrow {
+  content:url("../resource/down_arrow.png");
+}
+
+div.seasons .seasons.spring {
+  content: url("../resource/seasons_spring.png");
+}
+
+div.seasons .seasons.summer {
+  content: url("../resource/seasons_summer.png");
+}
+
+div.seasons .seasons.harvest, div.seasons .seasons.autumn {
+  content: url("../resource/seasons_autumn.png");
+}
+
+div.seasons .seasons.winter {
+  content: url("../resource/seasons_winter.png");
+}
+
+.card.front .art-primary.building-category.food:after {
+  background-image:url("../resource/card_type-food.png");
+}
+
+.card.front .art-primary.building-category.trade:after {
+  background-image:url("../resource/card_type-trade.png");
+}
+
+.card.front .art-primary.building-category.entertainment:after {
+  background-image:url("../resource/card_type-entertainment.png");
+}
+
+.card.front .art-primary.building-category.production:after {
+  background-image:url("../resource/card_type-production.png");
+}
+
+.card.front .art-primary.building-category.housing:after {
+  background-image:url("../resource/card_type-housing.png");
+}
+
+.card.front .art-primary.building-category.education:after {
+  background-image:url("../resource/card_type-education.png");
+}
+
+.card.front .art-primary.building-category.luxury:after {
+  background-image:url("../resource/card_type-luxury.png");
+}
+
+.card.front .art-primary.building-category.water:after {
+  background-image:url("../resource/card_type-water.png");
+}
+
+.tiny {
+  /*flex-basis: 8pt;*/
+  max-width: 14pt;
+  max-height: 8pt;
+  vertical-align: middle;
+}
+
+.small {
+  /*flex-basis: 10pt;*/
+  max-width: 17pt;
+  max-height: 10pt;
+}
+
+.medium {
+  /*flex-basis: 18pt;*/
+  max-width: 32pt;
+  max-height: 18pt;
+}
+
+.large {
+  /*flex-basis: 36pt;*/
+  min-width: 32pt;
+  min-height: 32pt;
+  max-width: 32pt;
+  max-height: 36pt;
+  padding: 1px;
+}
+
+.tier1 {
+  background-color: #98FF98;
+}
+
+.tier2 {
+  background-color: #F3F781;
+}
+
+.tier3 {
+  background-color: #FAAC58;
+}
+
+.tier4 {
+  background-color: #F78181;
+}
+
+.tier-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 7pt;
+  border-top: 1px solid black;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.card.back .tier-indicator {
+  height: 14pt;
+}
+
+.num-players {
+  font-size: 16px;
+}
+

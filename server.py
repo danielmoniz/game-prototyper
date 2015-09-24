@@ -10,6 +10,11 @@ app = Flask(__name__)
 #app.jinja_env.add_extension('utils.jinja2htmlcompress.HTMLCompress')
 
 
+@app.route('/favicon.ico/')
+def favicon():
+    return send_file('./favicon.png')
+
+
 @app.route('/<game_name>/')
 def display(game_name):
     data_file = request.args.get('data_file', None)
@@ -57,7 +62,7 @@ def display(game_name):
         styles.append(url_for('get_style', game_name=game_name, file_name='{0}.css'.format(card_type)))
 
     print_stylesheet = url_for('static', filename='styles/print.css')
-    print_adjust_stylesheet = url_for('get_style', game_name=game_name, file_name='print_adjust.css')
+    print_adjust_stylesheet = url_for('get_file', game_name=game_name, file_name='print_adjust.css')
     global_stylesheet = url_for('static', filename='styles/global_cards.css')
     default_stylesheet = url_for('static', filename='styles/default_cards.css')
 
@@ -69,23 +74,29 @@ def display(game_name):
     return render_template('cards.html', fronts=cards[True], backs=cards[False], styles=styles, icon_styles=icon_styles, style_global=global_stylesheet, style_default=default_stylesheet, style_print=print_stylesheet, style_print_adjust=print_adjust_stylesheet, columns=columns)
 
 
+@app.route('/<game_name>/<file_name>')
+def get_file(game_name, file_name):
+    path = "{0}/{1}".format(game_name, file_name)
+    return get_file(path, game_name, file_name)
+
+
 @app.route('/<game_name>/resource/<file_name>')
 def get_resource(game_name, file_name):
-    if '..' in game_name or game_name.startswith('/'):
-        abort(404)
-    if '..' in file_name or file_name.startswith('/'):
-        abort(404)
     path = "{0}/resources/{1}".format(game_name, file_name)
-    return send_file(path)
+    return get_file(path, game_name, file_name)
 
 
 @app.route('/<game_name>/style/<file_name>')
 def get_style(game_name, file_name):
+    path = "{0}/cards/{1}".format(game_name, file_name)
+    return get_file(path, game_name, file_name)
+
+
+def get_file(path, game_name, file_name):
     if '..' in game_name or game_name.startswith('/'):
         abort(404)
     if '..' in file_name or file_name.startswith('/'):
         abort(404)
-    path = "{0}/cards/{1}".format(game_name, file_name)
     return send_file(path)
 
 
@@ -108,23 +119,6 @@ def get_icon_styles(game_name, resources, other_icons):
     styles = render_template('icons.css', game_name=game_name, resources=resources)
     styles += render_template('icons.css', game_name=game_name, resources=other_icons)
     return styles
-
-
-@app.route('/<game_name>/save', methods=['POST'])
-def save(game_name):
-    print "request:", request.method
-    return 'test response'
-
-@app.route('/single/')
-@app.route('/single/<card_name>')
-def single_card(card_name=None):
-    # get parsed/processed info for all cards
-    card = {
-        'title': 'Magikarp',
-    }
-    return render_template('card.html', card=card)
-    return "Card name: {0}".format(card_name)
-    return 'Hello world!'
 
 
 def debug(text, print_text=True):
