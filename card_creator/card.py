@@ -46,7 +46,7 @@ class Card(object):
         if not hasattr(self, 'quantity') or self.quantity == '':
             self.quantity = 1
 
-        file_name = "{0}.py".format(game_name)
+        file_name = "process.py"
         file_path = "./{0}/{1}".format(game_name, file_name)
 
         def process(self, *args, **kwargs): pass
