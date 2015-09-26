@@ -22,6 +22,23 @@ $(function() {
     return get_div('page ' + side);
   }
 
+  function shrink_font(element) {
+    while (element.scrollHeight > $(element).outerHeight() || element.scrollWidth > $(element).outerWidth()) {
+      var size = parseInt($(element).css('font-size'));
+      if (size == 1) {
+        break;
+      }
+      $(element).css('font-size', size - 1);
+    }
+  }
+
+  function format_card(card) {
+    var elements = $(card).find('.shrinkable-font');
+    elements.each(function(i, element) {
+      shrink_font(element);
+    });
+  }
+
   function format_cards(fronts, backs) {
     var current_container = get_container('front');
     var current_page = get_page('front');
@@ -35,6 +52,7 @@ $(function() {
       var card = fronts[i];
       last_width = $(card).width();
       last_height = $(card).height();
+      format_card(card);
       current_page.append(card);
 
       if (current_page.height() > current_container.height()) {
