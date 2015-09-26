@@ -43,7 +43,7 @@ class Card(object):
                 continue
             setattr(self, key, value)
 
-        if self.quantity == '':
+        if not hasattr(self, 'quantity') or self.quantity == '':
             self.quantity = 1
 
         file_name = "{0}.py".format(game_name)
