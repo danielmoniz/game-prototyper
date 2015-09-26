@@ -97,7 +97,11 @@ def get_file(path, game_name, file_name):
         abort(404)
     if '..' in file_name or file_name.startswith('/'):
         abort(404)
-    return send_file(path)
+    try:
+        return_file = send_file(path)
+    except IOError:
+        return 'Failed to load {0}'.format(file_name)
+    return return_file
 
 
 def get_renderable_card(game_name, card):
