@@ -1,0 +1,8 @@
+/*
+ * Styling for all cards of card_type 'main' (the default for all cards)
+ */
+
+.card.main .body {
+    text-shadow: 0 0 1px red;
+}
+

@@ -1,0 +1,18 @@
+CARD FRONT - FILL ME IN
+
+{#
+Edit this template to your hearts content. Never use IDs (use classes instead).
+#}
+
+<br /><br />
+Some card info:
+<br /><br />
+card.name: {{ card.name }}<br />
+card.resource1: {{ card.resource1 }}<br />
+card.resource2: {{ card.resource2 }}<br />
+card.resource3: {{ card.resource3 }}<br />
+<div class="body">
+  {% for text in card.text %}
+    <p>{{ text }}</p>
+  {% endfor %}
+</div>

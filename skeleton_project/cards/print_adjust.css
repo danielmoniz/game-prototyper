@@ -1,0 +1,13 @@
+/*
+ * Some printers do not properly lineup the reverse sides of pages.
+ * Any shifting required to make them line up should go here in the form of
+ * padding.
+ */
+
+div.max-page-size.back {
+  box-sizing: border-box;
+  /*
+  padding: 5pt 0 0 7pt;
+  */
+}
+

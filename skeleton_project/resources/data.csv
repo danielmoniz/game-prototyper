@@ -1,0 +1,5 @@
+Name,Quantity,Resource1,Resource2,Resource3,Text,Card_type,only_print,no_print,no_print_reason
+,,,,,,,,,
+card name example,3,,1,2,first paragraph here,,,,<— put a 1 here to avoid printing this card
+,,,,,more text,,,,
+,,,,,these will be on different lines,,,,
