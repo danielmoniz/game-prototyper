@@ -14,7 +14,7 @@ div.page_container {
   box-sizing: border-box;
 }
 
-div.page_container.back {
+div.page.back {
     flex-flow: row-reverse wrap;
 }
 
