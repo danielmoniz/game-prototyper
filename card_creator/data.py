@@ -108,7 +108,7 @@ def parse_data_file(file_location):
     with open(file_location, 'r') as data:
         reader = csv.reader(data)
         keys = reader.next()
-        keys = [x.lower().strip() for x in keys if x.strip()]
+        keys = [x.lower().strip().replace(' ', '_') for x in keys if x.strip()]
         searchable_rows = []
         logging.debug(keys)
         logging.debug('-'*5)
