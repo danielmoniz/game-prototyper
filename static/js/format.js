@@ -22,20 +22,44 @@ $(function() {
     return get_div('page ' + side);
   }
 
-  function shrink_font(element) {
-    while (element.scrollHeight > $(element).outerHeight() || element.scrollWidth > $(element).outerWidth()) {
-      var size = parseInt($(element).css('font-size'));
-      if (size == 1) {
-        break;
+  function shrink_elements(element) {
+    $(window).load(function() {
+      while (element.scrollHeight > $(element).outerHeight() || element.scrollWidth > $(element).outerWidth()) {
+        if ($(element).hasClass('shrinkable-font')) {
+          var font_size = parseInt($(element).css('font-size'));
+          if (font_size == 1) {
+            break;
+          }
+          $(element).css('font-size', font_size - 1);
+        }
+
+        if ($(element).hasClass('shrinkable-icons')) {
+          var icons = $(element).find('.icon');
+          var move_on = false;
+          icons.each(function(i, icon) {
+            var icon_width = $(icon).width();
+            var icon_height = $(icon).height();
+            if (icon_width <= 8 || icon_height <= 8) {
+              move_on = true;
+              return false;
+            }
+
+            var old_width = $(icon).width();
+            $(icon).width(icon_width - 1);
+            var new_width = $(icon).width();
+            $(icon).height(icon_height - 1);
+          });
+          if (move_on) break;
+        }
       }
-      $(element).css('font-size', size - 1);
-    }
+    });
   }
 
   function format_card(card) {
-    var elements = $(card).find('.shrinkable-font');
+    var elements = $(card).find('.shrinkable-icons');
+    elements = elements.add($(card).find('.shrinkable-font'));
     elements.each(function(i, element) {
-      shrink_font(element);
+      shrink_elements(element);
     });
   }
 
@@ -58,7 +82,7 @@ $(function() {
       }
 
       // set card as previous card's back if needed
-      if ($(front).find('.placement').attr('placement') == 'back') {
+      if (back && $(front).find('.placement').attr('placement') == 'back') {
         var last_back = $(backs[i - 1]);
         last_back.replaceWith(front);
         back.remove();
