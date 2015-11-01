@@ -46,6 +46,7 @@ def group_rows_by_card_name(data):
     grouped_columns = []
 
     for row in data:
+        #print row
         if row['name']:
             if row['name'].startswith('#'): continue
             if last_data:
@@ -56,6 +57,7 @@ def group_rows_by_card_name(data):
 
         rows_since_last_data += 1
 
+        #print row['name']
         for column, value in row.iteritems():
             if value and value.strip():
                 value = value.strip()
@@ -120,6 +122,14 @@ def parse_data_file(file_location):
                 if not keys[i].strip():
                     continue
                 searchable_row[keys[i]] = row[i]
+            searchable_row = convert_row_to_unicode(searchable_row)
             searchable_rows.append(searchable_row)
     return searchable_rows
+
+
+def convert_row_to_unicode(row):
+    new_row = {}
+    for key, value in row.iteritems():
+        new_row[key] = value.decode('utf-8')
+    return new_row
 
