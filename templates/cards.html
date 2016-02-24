@@ -21,6 +21,7 @@
   <div class="cards fronts">
     {% for card in fronts %}
     <div class="card {{ card.card_type }} {{ card.front_or_back }}" card_name="{{ card.name }}">
+      <div class='placement' placement='{{ card.is_card_back }}'></div>
       {{ card.html | safe }}
     </div>
     {% endfor %}
@@ -29,6 +30,7 @@
   <div class="cards backs">
     {% for card in backs %}
     <div class="card {{ card.card_type }} {{ card.front_or_back }}" card_name="{{ card.name }}">
+      <div class='placement' placement='{{ card.is_card_back }}'></div>
       {{ card.html | safe }}
     </div>
     {% endfor %}
