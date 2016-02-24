@@ -25,11 +25,19 @@ def display(game_name):
     use_backs = request.args.get('backs', 'true')
     use_backs = use_backs.lower() == 'true'
 
-    search = request.args.get('search', '')
+    search = request.args.get('search', '').encode('UTF-8', errors='strict')
     card_type = request.args.get('card_type', '')
 
     duplicates = request.args.get('duplicates', 'true')
     duplicates = duplicates.lower() == 'true'
+
+    players = request.args.get('players', 0)
+    if not players: players = 0
+    players = int(players)
+
+    skip_players = request.args.get('skip_players', 0)
+    if not skip_players: skip_players = 0
+    skip_players = int(skip_players)
 
     old_loader = app.jinja_env.loader
     app.jinja_env.loader = PackageLoader(game_name, 'cards')
@@ -37,6 +45,7 @@ def display(game_name):
     all_card_data = data.get_card_data(game_name, data_files=data_files, card_names=None)
     columns = all_card_data[0].keys()
     cards = { True: [], False: [] }
+    only_print_cards = { True: [], False: [] }
 
     card_types = []
     sides = (True, False)
@@ -48,21 +57,30 @@ def display(game_name):
 
             quantity = range(card.quantity)
             if not duplicates: quantity = range(min(card.quantity, 1))
+
             for i in quantity:
                 if (not card.card_type.startswith(card_type)
                     or not card.name.lower().startswith(search.lower())
                     or card.no_print):
                     continue
+
                 card = card_helper.Card(card_data, game_name, index=i, front=front)
-                card.process(card, i + 1)
-                cards[front].append(get_renderable_card(game_name, card))
+                card.process(card, i + 1, players=players, skip_players=skip_players)
+                if not card.skip:
+                    cards[front].append(get_renderable_card(game_name, card))
+                if card.only_print:
+                    only_print_cards[front].append(get_renderable_card(game_name, card))
+
+    if only_print_cards[True]:
+        cards = only_print_cards
 
     styles = []
-    for card_type in list(set(card_types)):
+    styles.append(url_for('get_style', game_name=game_name, file_name='main.css'))
+    for card_type in list(set(x for x in card_types if x != 'main')):
         styles.append(url_for('get_style', game_name=game_name, file_name='{0}.css'.format(card_type)))
 
     print_stylesheet = url_for('static', filename='styles/print.css')
-    print_adjust_stylesheet = url_for('get_file', game_name=game_name, file_name='print_adjust.css')
+    print_adjust_stylesheet = url_for('get_style', game_name=game_name, file_name='print_adjust.css')
     global_stylesheet = url_for('static', filename='styles/global_cards.css')
     default_stylesheet = url_for('static', filename='styles/default_cards.css')
 
@@ -155,7 +173,6 @@ def word_tokenize(text):
 
 
 def replace_items_with_tokens(text, item_list, template):
-    print "text:", text
     chunks = text.split()
     for i, chunk in enumerate(chunks):
         for item_block in item_list:

@@ -41,7 +41,7 @@ $(function() {
             var icon_height = $(icon).height();
             if (icon_width <= 8 || icon_height <= 8) {
               move_on = true;
-              return false;
+              /*return false;*/
             }
 
             var old_width = $(icon).width();
@@ -92,26 +92,28 @@ $(function() {
       current_page.append(front);
       format_card(front);
       if (back) {
-        add_back(back, back_page, front);
+        back = add_back(back, back_page, front);
       }
 
       if (current_page.height() > current_container.height()) {
-        front.remove();
+        $(front).detach();
         if (back) {
-          back.remove();
+          $(back).detach();
         }
 
         current_container = get_container('front');
         current_page = get_page('front');
-        current_page.append(front)
+        //current_page.append(front)
         current_container.append(current_page);
 
         if (backs.length > 0) {
           var back_container = get_container('back');
           var back_page = get_page('back');
-          back_page.append(back);
+          //back_page.append(back);
+          //add_back(back, back_page, front);
           back_container.append(back_page);
         }
+        i--;
       }
     }
   }
@@ -121,11 +123,13 @@ $(function() {
     if (back_text != 'SAME AS FRONT') {
       page.append(back);
       format_card(back);
-      return;
+      return back;
     }
 
-    page.append($(front).clone());
-    back.remove();
+    $(back).remove();
+    var new_back = $(front).clone().appendTo(page);
+
+    return new_back;
   }
 
 });

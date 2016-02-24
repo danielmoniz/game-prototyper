@@ -4,9 +4,16 @@
   {% set resource_name = resource_names[0] %}
 
   {%- for resource in resource_names -%}
-    img.icon.{{ resource | lower }} {
-    content:url("/{{ game_name }}/resource/{{ resource_name | lower }}.png");
-  }
+    {% if '{' not in resource or '}' not in resource %}
+      img.icon.{{ resource | lower }} {
+	content: url("/{{ game_name }}/resource/{{ resource_name | lower }}.png");
+      }
+
+      div.icon.{{ resource | lower }} {
+	background-image: url("/{{ game_name }}/resource/{{ resource_name | lower }}.png");
+      }
+
+    {% endif -%}
   {% endfor -%}
 {%- endfor -%}
 

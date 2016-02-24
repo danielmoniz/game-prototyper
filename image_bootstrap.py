@@ -19,6 +19,7 @@ parser.add_argument('game_name', help="The directory name for your game.")
 parser.add_argument('-s', '--search', nargs='*', help="The term(s) to search.")
 parser.add_argument('-n', '--names', required=False, nargs='*', help="The name(s) of the image(s) for the search term(s).")
 parser.add_argument('-l', '--limit', type=int, default=3, required=False, help="The number of images to download.")
+parser.add_argument('-k', '--skip', type=int, default=0, required=False, help="The number of results to skip.")
 parser.add_argument('-p', '--public', action="store_true", help="Pull only images in the public domain for which no attribution is needed.")
 args = parser.parse_args()
 
@@ -33,6 +34,7 @@ project = args.game_name
 search_terms = args.search
 icon_names = args.names
 image_limit = args.limit
+offset = args.skip
 public_only = args.public
 
 api_keys_file_name = 'thenounproject_api_keys.txt'
@@ -71,7 +73,7 @@ def save_icon_data(search_term, name, icon_location, attributions_location):
     if name != search_term:
         print "name:", name
     auth = OAuth1(key, secret)
-    endpoint = "http://api.thenounproject.com/icons/{0}?limit={1}&limit_to_public_domain={2}".format(search_term, image_limit, int(public_only))
+    endpoint = "http://api.thenounproject.com/icons/{0}?limit={1}&limit_to_public_domain={2}&offset={3}".format(search_term, image_limit, int(public_only), offset)
 
     response = requests.get(endpoint, auth=auth)
     try:
@@ -82,8 +84,8 @@ def save_icon_data(search_term, name, icon_location, attributions_location):
         icon_url = icon['preview_url']
         icon_image = requests.get(icon_url)
 
-        practical_name = "{0}{1}".format(name, i+1)
-        if i == 0:
+        practical_name = "{0}{1}".format(name, i + offset + 1)
+        if i + offset == 0:
             practical_name = name
         file_name = "{0}.png".format(practical_name)
 
