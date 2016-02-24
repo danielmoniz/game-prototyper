@@ -128,6 +128,7 @@ $(function() {
 
     $(back).remove();
     var new_back = $(front).clone().appendTo(page);
+    format_card(new_back);
 
     return new_back;
   }
