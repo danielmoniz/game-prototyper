@@ -76,15 +76,29 @@ $(function() {
 
     for (var i=0; i<fronts.length; i++) {
       var front = fronts[i];
+      $(front).attr('card_number', i);
       var back = undefined;
       if (backs.length > 0) {
         back = backs[i];
+        $(back).attr('card_number', i);
       }
 
       // set card as previous card's back if needed
       if (back && $(front).find('.placement').attr('placement') == 'back') {
-        var last_back = $(backs[i - 1]);
+
+        var last_back = undefined;
+        for (var j=1; j<i+1; j++) {
+          last_back = $(backs[i - j]);
+          if ($(last_back).find('.placement').attr('placement') != 'replaced') {
+            break;
+          }
+        }
+
+        // add 'replaced' tag to ensure those cards are not replaced twice
+        $(last_back).find('.placement').attr('placement', 'replaced');
         last_back.replaceWith(front);
+        $(front).find('.placement').attr('placement', 'replaced');
+        $(back).find('.placement').attr('placement', 'replaced');
         back.remove();
         continue;
       }
