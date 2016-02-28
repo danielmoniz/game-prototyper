@@ -10,8 +10,9 @@ $(function() {
   }
 
   function get_container(side) {
-    var container = get_div('page_container ' + side);
-    var sub_container = get_div('max-page-size ' + side);
+    var size = $('#page_size').text();
+    var container = get_div('page_container ' + side + ' ' + size);
+    var sub_container = get_div('max-page-size ' + side + ' ' + size);
     container.append(sub_container);
     $('body').append(container);
     return sub_container;

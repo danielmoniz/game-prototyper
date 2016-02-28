@@ -18,6 +18,10 @@
 
 <body>
 
+  <div id="info-div" class="hidden">
+    <div id="page_size" class="">{{ page_size }}</div>
+  </div>
+
   <div class="cards fronts">
     {% for card in fronts %}
     <div class="card {{ card.card_type }} {{ card.front_or_back }}" card_name="{{ card.name }}">
