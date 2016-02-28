@@ -21,6 +21,11 @@ div.page_container.tabloid {
   height: 1146.72pt;
 }
 
+div.page_container.legal {
+  width: 573pt;
+  height: 944.36pt;
+}
+
 
 
 div.page.back {
