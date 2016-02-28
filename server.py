@@ -29,7 +29,7 @@ def display(game_name):
     card_type = request.args.get('card_type', '')
     page_size = request.args.get('page_size', 'letter')
 
-    duplicates = request.args.get('duplicates', 'true')
+    duplicates = request.args.get('duplicates', 'false')
     duplicates = duplicates.lower() == 'true'
 
     players = request.args.get('players', 0)
@@ -90,7 +90,24 @@ def display(game_name):
     other_icons = card_helper.Card.get_text_config('other_icons.txt')
     icon_styles = get_icon_styles(game_name, resources, other_icons)
 
-    return render_template('cards.html', fronts=cards[True], backs=cards[False], styles=styles, icon_styles=icon_styles, style_global=global_stylesheet, style_default=default_stylesheet, style_print=print_stylesheet, style_print_adjust=print_adjust_stylesheet, columns=columns, page_size=page_size)
+    return render_template(
+        'cards.html',
+        game_name=game_name,
+        fronts=cards[True],
+        backs=cards[False],
+        styles=styles,
+        icon_styles=icon_styles,
+        style_global=global_stylesheet,
+        style_default=default_stylesheet,
+        style_print=print_stylesheet,
+        style_print_adjust=print_adjust_stylesheet,
+        columns=columns,
+        page_size=page_size,
+        duplicates=duplicates,
+        players=players,
+        skip_players=skip_players,
+        search=search,
+        )
 
 
 @app.route('/<game_name>/<file_name>')

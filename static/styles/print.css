@@ -9,3 +9,7 @@ div.max-page-size {
   background-color: white;
 }
 
+div#display-options {
+  display: none;
+}
+

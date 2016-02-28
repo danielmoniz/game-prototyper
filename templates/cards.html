@@ -22,6 +22,51 @@
     <div id="page_size" class="">{{ page_size }}</div>
   </div>
 
+  <div id="display-options">
+    <form action="http://localhost:5000/{{ game_name }}/?test=123">
+      <div>
+        <label><input type="checkbox" name="duplicates" value="true"{% if duplicates %} checked{% endif %} />Show duplicates</label>
+      </div>
+      <div>
+        <label><input type="checkbox" name="backs" value="false"{% if not backs %} checked{% endif %} />Hide card backs</label>
+      </div>
+      <div>Page size: 
+        <label><input type="radio" name="page_size" value="letter"{% if page_size == "letter" %} checked{% endif %} />Letter</label>
+        <label><input type="radio" name="page_size" value="tabloid"{% if page_size == "tabloid" %} checked{% endif %} />Tabloid</label>
+      </div>
+      <div><label for="players">Number of players: </label>
+        <select name="players" id="players">
+          <option value="0"{% if not players %} selected="selected"{% endif %}>Any/all</option>
+          <option value="1"{% if players == 1 %} selected="selected"{% endif %}>1</option>
+          <option value="2"{% if players == 2 %} selected="selected"{% endif %}>2</option>
+          <option value="3"{% if players == 3 %} selected="selected"{% endif %}>3</option>
+          <option value="4"{% if players == 4 %} selected="selected"{% endif %}>4</option>
+          <option value="5"{% if players == 5 %} selected="selected"{% endif %}>5</option>
+          <option value="5"{% if players == 5 %} selected="selected"{% endif %}>6</option>
+        </select>
+      </div>
+      <div><label for="skip_players">Number of players to skip: </label>
+        <select name="skip_players" id="skip_players">
+          <option value="0"{% if not skip_players %} selected="selected"{% endif %}>0</option>
+          <option value="1"{% if skip_players == 1 %} selected="selected"{% endif %}>1</option>
+          <option value="2"{% if skip_players == 2 %} selected="selected"{% endif %}>2</option>
+          <option value="3"{% if skip_players == 3 %} selected="selected"{% endif %}>3</option>
+          <option value="4"{% if skip_players == 4 %} selected="selected"{% endif %}>4</option>
+          <option value="5"{% if skip_players == 5 %} selected="selected"{% endif %}>5</option>
+        </select>
+      </div>
+      <div>
+        <label>Title search: <input type="text" name="search" value="{{ search }}" /></label>
+      </div>
+      <div>
+        <label>Card type: <input type="text" name="card_type" value="{{ card_type }}" /></label>
+      </div>
+
+      <input type="submit" value="Update" />
+    </form>
+
+  </div>
+
   <div class="cards fronts">
     {% for card in fronts %}
     <div class="card {{ card.card_type }} {{ card.front_or_back }}" card_name="{{ card.name }}">
