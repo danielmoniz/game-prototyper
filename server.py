@@ -5,6 +5,7 @@ from jinja2 import Environment, PackageLoader
 
 from card_creator import data
 from card_creator import card as card_helper
+from card_creator import player_numbers
 
 app = Flask(__name__)
 #app.jinja_env.add_extension('utils.jinja2htmlcompress.HTMLCompress')
@@ -66,7 +67,7 @@ def display(game_name):
                     continue
 
                 card = card_helper.Card(card_data, game_name, index=i, front=front)
-                card.process(card, i + 1, players=players, skip_players=skip_players)
+                player_numbers.update(card, i + 1, players=players, skip_players=skip_players)
                 if not card.skip:
                     cards[front].append(get_renderable_card(game_name, card))
                     if card.only_print:

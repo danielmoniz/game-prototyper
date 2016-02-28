@@ -31,6 +31,8 @@ class Card(object):
 
         self.set_has_costs()
 
+        '''
+        # set project-specific custom process method
         file_name = "process.py"
         file_path = "./{0}/{1}".format(game_name, file_name)
 
@@ -41,6 +43,7 @@ class Card(object):
             self.process = process_module.process
         except IOError as e:
             pass
+        '''
 
     def set_generic_data(self, data):
         for key, value in data.iteritems():
