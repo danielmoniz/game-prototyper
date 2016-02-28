@@ -27,7 +27,7 @@ def display(game_name):
     use_backs = use_backs.lower() == 'true'
 
     search = request.args.get('search', '').encode('UTF-8', errors='strict')
-    card_type = request.args.get('card_type', '')
+    search_card_type = request.args.get('card_type', '')
     page_size = request.args.get('page_size', 'letter')
 
     duplicates = request.args.get('duplicates', 'false')
@@ -61,7 +61,7 @@ def display(game_name):
             if not duplicates: quantity = range(min(card.quantity, 1))
 
             for i in quantity:
-                if (not card.card_type.startswith(card_type)
+                if (not card.card_type.startswith(search_card_type)
                     or not card.name.lower().startswith(search.lower())
                     or card.no_print):
                     continue
@@ -108,6 +108,7 @@ def display(game_name):
         players=players,
         skip_players=skip_players,
         search=search,
+        card_type=search_card_type,
         )
 
 
