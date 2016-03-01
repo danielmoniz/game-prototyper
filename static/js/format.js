@@ -5,15 +5,12 @@ $(function() {
   hide_cards();
 
   function hide_cards() {
-    var use_fronts = $('#info-div div#use_fronts').text().toLowerCase();
-    use_fronts = use_fronts == 'true';
-    var use_backs = $('#info-div div#use_backs').text().toLowerCase();
-    use_backs = use_backs == 'true';
-    if (!use_fronts) {
-      $('.page_container.front').hide();
-    }
-    if (!use_backs) {
+    var card_sides = $('#info-div div#card_sides').text().toLowerCase();
+    if (card_sides == 'fronts') {
       $('.page_container.back').hide();
+    }
+    if (card_sides == 'backs') {
+      $('.page_container.front').hide();
     }
   }
 

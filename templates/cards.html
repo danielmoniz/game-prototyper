@@ -20,8 +20,7 @@
 
   <div id="info-div" class="hidden">
     <div id="page_size" class="">{{ page_size }}</div>
-    <div id="use_fronts" class="">{{ use_fronts }}</div>
-    <div id="use_backs" class="">{{ use_backs }}</div>
+    <div id="card_sides" class="">{{ card_sides }}</div>
   </div>
 
   <div id="display-options">
@@ -29,11 +28,10 @@
       <div>
         <label><input type="checkbox" name="duplicates" value="true"{% if duplicates %} checked{% endif %} />Show duplicates</label>
       </div>
-      <div>
-        <label><input type="checkbox" name="use_backs" value="false"{% if not use_backs %} checked{% endif %} />Hide card backs</label>
-      </div>
-      <div>
-        <label><input type="checkbox" name="use_fronts" value="false"{% if not use_fronts %} checked{% endif %} />Hide card fronts</label>
+      <div>Show card sides: 
+        <label><input type="radio" name="card_sides" value="all"{% if card_sides == "all" %} checked{% endif %} />All</label>
+        <label><input type="radio" name="card_sides" value="fronts"{% if card_sides == "fronts" %} checked{% endif %} />Fronts</label>
+        <label><input type="radio" name="card_sides" value="backs"{% if card_sides == "backs" %} checked{% endif %} />Backs</label>
       </div>
 
       <div>Page size: 
