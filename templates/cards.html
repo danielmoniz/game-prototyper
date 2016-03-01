@@ -20,6 +20,8 @@
 
   <div id="info-div" class="hidden">
     <div id="page_size" class="">{{ page_size }}</div>
+    <div id="use_fronts" class="">{{ use_fronts }}</div>
+    <div id="use_backs" class="">{{ use_backs }}</div>
   </div>
 
   <div id="display-options">
@@ -28,8 +30,12 @@
         <label><input type="checkbox" name="duplicates" value="true"{% if duplicates %} checked{% endif %} />Show duplicates</label>
       </div>
       <div>
-        <label><input type="checkbox" name="backs" value="false"{% if not backs %} checked{% endif %} />Hide card backs</label>
+        <label><input type="checkbox" name="use_backs" value="false"{% if not use_backs %} checked{% endif %} />Hide card backs</label>
       </div>
+      <div>
+        <label><input type="checkbox" name="use_fronts" value="false"{% if not use_fronts %} checked{% endif %} />Hide card fronts</label>
+      </div>
+
       <div>Page size: 
         <label><input type="radio" name="page_size" value="letter"{% if page_size == "letter" %} checked{% endif %} />Letter</label>
         <label><input type="radio" name="page_size" value="tabloid"{% if page_size == "tabloid" %} checked{% endif %} />Tabloid</label>
@@ -65,6 +71,8 @@
 
       <input type="submit" value="Update" />
     </form>
+
+    <button id="addImage"></button>
 
   </div>
 

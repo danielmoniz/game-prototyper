@@ -23,8 +23,11 @@ def display(game_name):
     if data_file is None:
         data_files = None
 
-    use_backs = request.args.get('backs', 'true')
+    use_backs = request.args.get('use_backs', 'true')
     use_backs = use_backs.lower() == 'true'
+    use_fronts = request.args.get('use_fronts', 'true')
+    use_fronts = use_fronts.lower() == 'true'
+    if not use_fronts: use_backs = True
 
     search = request.args.get('search', '').encode('UTF-8', errors='strict')
     search_card_type = request.args.get('card_type', '')
@@ -51,7 +54,6 @@ def display(game_name):
 
     card_types = []
     sides = (True, False)
-    if not use_backs: sides = (True,)
     for front in sides:
         for card_data in all_card_data:
             card = card_helper.Card(card_data, game_name, index=0, front=front)
@@ -109,6 +111,8 @@ def display(game_name):
         skip_players=skip_players,
         search=search,
         card_type=search_card_type,
+        use_fronts=use_fronts,
+        use_backs=use_backs,
         )
 
 

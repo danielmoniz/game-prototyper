@@ -2,6 +2,20 @@
 $(function() {
 
   format_cards($('.fronts').children(), $('.backs').children());
+  hide_cards();
+
+  function hide_cards() {
+    var use_fronts = $('#info-div div#use_fronts').text().toLowerCase();
+    use_fronts = use_fronts == 'true';
+    var use_backs = $('#info-div div#use_backs').text().toLowerCase();
+    use_backs = use_backs == 'true';
+    if (!use_fronts) {
+      $('.page_container.front').hide();
+    }
+    if (!use_backs) {
+      $('.page_container.back').hide();
+    }
+  }
 
   function get_div(class_text) {
     return jQuery('<div/>', {
