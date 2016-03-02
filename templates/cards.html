@@ -28,6 +28,10 @@
       <div>
         <label><input type="checkbox" name="duplicates" value="true"{% if duplicates %} checked{% endif %} />Show duplicates</label>
       </div>
+      <div>
+        <label><input type="checkbox" name="ignore_only_print" value="true"{% if ignore_only_print %} checked{% endif %} />Ignore only_print settings</label>
+      </div>
+
       <div>Show card sides: 
         <label><input type="radio" name="card_sides" value="all"{% if card_sides == "all" %} checked{% endif %} />All</label>
         <label><input type="radio" name="card_sides" value="fronts"{% if card_sides == "fronts" %} checked{% endif %} />Fronts</label>

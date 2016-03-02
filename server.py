@@ -31,6 +31,8 @@ def display(game_name):
 
     duplicates = request.args.get('duplicates', 'false')
     duplicates = duplicates.lower() == 'true'
+    ignore_only_print = request.args.get('ignore_only_print', 'false')
+    ignore_only_print = ignore_only_print.lower() == 'true'
 
     players = request.args.get('players', 0)
     if not players: players = 0
@@ -39,6 +41,8 @@ def display(game_name):
     skip_players = request.args.get('skip_players', 0)
     if not skip_players: skip_players = 0
     skip_players = int(skip_players)
+
+    #macros = app.jinja_env.get_template('templates/macros.html')
 
     old_loader = app.jinja_env.loader
     app.jinja_env.loader = PackageLoader(game_name, 'cards')
@@ -68,7 +72,7 @@ def display(game_name):
                 player_numbers.update(card, i + 1, players=players, skip_players=skip_players)
                 if not card.skip:
                     cards[front].append(get_renderable_card(game_name, card))
-                    if card.only_print:
+                    if card.only_print and not ignore_only_print:
                         only_print_cards[front].append(get_renderable_card(game_name, card))
 
     if only_print_cards[True]:
@@ -108,6 +112,7 @@ def display(game_name):
         search=search,
         card_type=search_card_type,
         card_sides=card_sides,
+        ignore_only_print=ignore_only_print,
         )
 
 
