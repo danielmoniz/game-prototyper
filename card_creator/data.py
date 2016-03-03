@@ -48,6 +48,8 @@ def group_rows_by_card_name(data):
     for row in data:
         #print row
         if row['name']:
+            if row['name'].startswith('#STOP'):
+                break
             if row['name'].startswith('#'): continue
             if last_data:
                 formatted_data.append(last_data)
