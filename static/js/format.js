@@ -36,6 +36,7 @@ $(function() {
 
   function shrink_elements(element) {
     $(window).load(function() {
+      var reduced = 0;
       while (element.scrollHeight > $(element).outerHeight() || element.scrollWidth > $(element).outerWidth()) {
         if ($(element).hasClass('shrinkable-font')) {
           var font_size = parseInt($(element).css('font-size'));
@@ -43,6 +44,13 @@ $(function() {
             break;
           }
           $(element).css('font-size', font_size - 1);
+          reduced += 1;
+
+          if (reduced % 2 == 0) {
+            var elements = $(element).find('.text-item');
+            var margin_bottom = parseInt(elements.first().css('margin-bottom'));
+            elements.css('margin-bottom', margin_bottom - 1);
+          }
         }
 
         if ($(element).hasClass('shrinkable-icons')) {
