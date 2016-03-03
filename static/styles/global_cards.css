@@ -29,6 +29,7 @@ div.page_container.legal {
 
 
 div.page.back {
+    display: flex;
     flex-flow: row-reverse wrap;
 }
 
@@ -42,7 +43,7 @@ div.max-page-size {
 div.page {
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
+  justify-content: flex-start;
   /*align-items: center;*/
   align-items: flex-start;
   align-content: center;
@@ -53,15 +54,14 @@ div.page {
     flex-flow: row wrap;
 }
 
-.page.back {
-    display: flex;
-    flex-flow: row-reverse wrap;
-}
-
 .card {
     /* Box sizing must be here with border and have a height defined! */
     box-sizing: border-box;
     display: flex;
     flex-flow: column wrap;
     position: relative;
+}
+
+.hidden {
+  display: none;
 }
