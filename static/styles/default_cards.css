@@ -37,19 +37,25 @@
     font-size: 10;
 }
 
-
-
-/*
-.card.main { 
-  position: relative;
-  font-family: arial;
-  border: 3px solid black;
-  width: 6cm;
-  height: 9cm;
-  padding: 2px;
-  background-image: url("http://demilked.uuuploads.com/free-paper-textures/free-paper-texture-2.jpg");
-  background-image: url("file://../../resources/front_background.jpg");
-  background-size: 6.1cm 9.1cm;
+.tiny {
+  max-width: 14pt;
+  max-height: 8pt;
+  vertical-align: middle;
 }
-*/
+
+.small {
+  max-width: 17pt;
+  max-height: 10pt;
+}
+
+.medium {
+  max-width: 32pt;
+  max-height: 18pt;
+}
+
+.large {
+  max-width: 32pt;
+  max-height: 32pt;
+  padding: 1px;
+}
 
