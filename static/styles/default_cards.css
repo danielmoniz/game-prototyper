@@ -39,7 +39,7 @@
 
 .tiny {
   max-width: 14pt;
-  max-height: 8pt;
+  max-height: 9pt;
   vertical-align: middle;
 }
 
@@ -54,8 +54,7 @@
 }
 
 .large {
-  max-width: 32pt;
-  max-height: 32pt;
+  max-width: 36pt;
+  max-height: 36pt;
   padding: 1px;
 }
-

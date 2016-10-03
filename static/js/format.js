@@ -1,3 +1,43 @@
+function shrink_elements(element) {
+  $(window).load(function() {
+    var reduced = 0;
+    var scrollHeightOverlapAllowance = 7;
+    while (element.scrollHeight > $(element).outerHeight() + scrollHeightOverlapAllowance
+      || element.scrollWidth > $(element).outerWidth()) {
+      if ($(element).hasClass('shrinkable-font')) {
+        var font_size = parseInt($(element).css('font-size'));
+        if (font_size == 1) {
+          break;
+        }
+        $(element).css('font-size', font_size - 1);
+        reduced += 1;
+
+        if (reduced % 2 == 0) {
+          var elements = $(element).find('.text-item');
+          var margin_bottom = parseInt(elements.first().css('margin-bottom'));
+          elements.css('margin-bottom', margin_bottom - 1);
+        }
+      }
+
+      var shrinkIcons = true;
+      if ($(element).hasClass('shrinkable-icons') && shrinkIcons) {
+        var icons = $(element).find('.icon');
+        icons.each(function(i, icon) {
+          var icon_width = $(icon).width();
+          var icon_height = $(icon).height();
+          if (icon_width <= 8 || icon_height <= 8) {
+            shrinkIcons = false;
+          }
+
+          var old_width = $(icon).width();
+          $(icon).width(icon_width - 1);
+          var new_width = $(icon).width();
+          $(icon).height(icon_height - 1);
+        });
+      }
+    }
+  });
+}
 
 $(function() {
 
@@ -34,46 +74,7 @@ $(function() {
     return get_div('page ' + side);
   }
 
-  function shrink_elements(element) {
-    $(window).load(function() {
-      var reduced = 0;
-      while (element.scrollHeight > $(element).outerHeight() || element.scrollWidth > $(element).outerWidth()) {
-        if ($(element).hasClass('shrinkable-font')) {
-          var font_size = parseInt($(element).css('font-size'));
-          if (font_size == 1) {
-            break;
-          }
-          $(element).css('font-size', font_size - 1);
-          reduced += 1;
 
-          if (reduced % 2 == 0) {
-            var elements = $(element).find('.text-item');
-            var margin_bottom = parseInt(elements.first().css('margin-bottom'));
-            elements.css('margin-bottom', margin_bottom - 1);
-          }
-        }
-
-        if ($(element).hasClass('shrinkable-icons')) {
-          var icons = $(element).find('.icon');
-          var move_on = false;
-          icons.each(function(i, icon) {
-            var icon_width = $(icon).width();
-            var icon_height = $(icon).height();
-            if (icon_width <= 8 || icon_height <= 8) {
-              move_on = true;
-              /*return false;*/
-            }
-
-            var old_width = $(icon).width();
-            $(icon).width(icon_width - 1);
-            var new_width = $(icon).width();
-            $(icon).height(icon_height - 1);
-          });
-          if (move_on) break;
-        }
-      }
-    });
-  }
 
   function format_card(card) {
     var elements = $(card).find('.shrinkable-icons');

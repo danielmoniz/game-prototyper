@@ -1,6 +1,4 @@
 
-from PIL import Image, ImageDraw, ImageFont
-
 game_name = None
 
 def get_location(resource_name):
