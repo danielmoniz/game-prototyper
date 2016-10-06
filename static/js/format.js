@@ -1,42 +1,83 @@
-function shrink_elements(element) {
+
+/*
+ * Determines if an element's content is greater than its height or width.
+ */
+function contentTooLarge(element) {
+  var scrollHeightOverlapAllowance = 2; // hopefully offsets unnecessary final margin
+  return element.scrollHeight > $(element).outerHeight() + scrollHeightOverlapAllowance
+    || element.scrollWidth > $(element).outerWidth();
+}
+
+function shrinkElements(element) {
   $(window).load(function() {
-    var reduced = 0;
-    var scrollHeightOverlapAllowance = 7;
-    while (element.scrollHeight > $(element).outerHeight() + scrollHeightOverlapAllowance
-      || element.scrollWidth > $(element).outerWidth()) {
-      if ($(element).hasClass('shrinkable-font')) {
-        var font_size = parseInt($(element).css('font-size'));
-        if (font_size == 1) {
-          break;
-        }
-        $(element).css('font-size', font_size - 1);
+
+    (function(contentTooLarge){
+      // console.log('Window loaded for', $(element).parents('.card').find('.title').text())
+      contentTooLarge = contentTooLarge.bind(null, element);
+      var reduced = 0;
+
+      var reduceAmount = 0.5;
+      while (contentTooLarge()) {
+        if (!shrinkText(element, reduceAmount)) break;
         reduced += 1;
 
-        if (reduced % 2 == 0) {
-          var elements = $(element).find('.text-item');
-          var margin_bottom = parseInt(elements.first().css('margin-bottom'));
-          elements.css('margin-bottom', margin_bottom - 1);
+        if (reduced % (Math.ceil(2 / reduceAmount)) == 0 && contentTooLarge()) {
+          reduceMargin(element);
+        }
+
+        var iconsCanBeShrunk = true,
+            frequency = 2;
+        if (iconsCanBeShrunk && contentTooLarge() && (reduced % frequency == 0)) {
+          iconsCanBeShrunk = shrinkIcons(element);
         }
       }
-
-      var shrinkIcons = true;
-      if ($(element).hasClass('shrinkable-icons') && shrinkIcons) {
-        var icons = $(element).find('.icon');
-        icons.each(function(i, icon) {
-          var icon_width = $(icon).width();
-          var icon_height = $(icon).height();
-          if (icon_width <= 8 || icon_height <= 8) {
-            shrinkIcons = false;
-          }
-
-          var old_width = $(icon).width();
-          $(icon).width(icon_width - 1);
-          var new_width = $(icon).width();
-          $(icon).height(icon_height - 1);
-        });
-      }
-    }
+    })(contentTooLarge);
   });
+}
+
+/*
+ * If applicable, finds and shrinks text within an element.
+ */
+function shrinkText(element, reduceAmount) {
+  if ($(element).hasClass('shrinkable-font')) {
+    var font_size = parseFloat($(element).css('font-size'));
+    if (font_size == 1) {
+      return false;
+    }
+
+    $(element).css('font-size', font_size - reduceAmount);
+    // console.log($(element).parents('.card').find('.title').text(), 'reduced:', reduced)
+  }
+  return true;
+}
+
+// reduce margins on text-items within element if needed
+function reduceMargin(element) {
+  if ($(element).hasClass('shrinkable-font')) {
+    var elements = $(element).find('.text-item');
+    var margin_bottom = parseInt(elements.first().css('margin-bottom'));
+    elements.css('margin-bottom', margin_bottom - 1);
+  }
+}
+
+/*
+ * If applicable, finds and shrinks icons within an element.
+ */
+function shrinkIcons(element) {
+  if ($(element).hasClass('shrinkable-icons')) {
+    var icons = $(element).find('.icon');
+    icons.each(function(i, icon) {
+      var icon_width = $(icon).width();
+      var icon_height = $(icon).height();
+      if (icon_width <= 8 || icon_height <= 8) {
+        return false; // stop shrinking icons as soon as one icon is too small
+      }
+
+      $(icon).width(icon_width - 1);
+      $(icon).height(icon_height - 1);
+    });
+  }
+  return true;
 }
 
 $(function() {
@@ -80,7 +121,7 @@ $(function() {
     var elements = $(card).find('.shrinkable-icons');
     elements = elements.add($(card).find('.shrinkable-font'));
     elements.each(function(i, element) {
-      shrink_elements(element);
+      shrinkElements(element);
     });
   }
 
