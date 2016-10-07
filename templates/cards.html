@@ -21,6 +21,7 @@
   <div id="info-div" class="hidden">
     <div id="page_size" class="">{{ page_size }}</div>
     <div id="card_sides" class="">{{ card_sides }}</div>
+    <div id="page_orientation" data-page-orientation="{{ page_orientation }}"></div>
   </div>
 
   <div id="display-options">
@@ -32,16 +33,20 @@
         <label><input type="checkbox" name="ignore_only_print" value="true"{% if ignore_only_print %} checked{% endif %} />Ignore only_print settings</label>
       </div>
 
-      <div>Show card sides: 
+      <div>Show card sides:
         <label><input type="radio" name="card_sides" value="all"{% if card_sides == "all" %} checked{% endif %} />All</label>
         <label><input type="radio" name="card_sides" value="fronts"{% if card_sides == "fronts" %} checked{% endif %} />Fronts</label>
         <label><input type="radio" name="card_sides" value="backs"{% if card_sides == "backs" %} checked{% endif %} />Backs</label>
       </div>
 
-      <div>Page size: 
+      <div>Page size:
         <label><input type="radio" name="page_size" value="letter"{% if page_size == "letter" %} checked{% endif %} />Letter</label>
         <label><input type="radio" name="page_size" value="tabloid"{% if page_size == "tabloid" %} checked{% endif %} />Tabloid</label>
         <label><input type="radio" name="page_size" value="legal"{% if page_size == "legal" %} checked{% endif %} />Legal</label>
+      </div>
+      <div class="">Page orientation:
+        <label><input type="radio" name="page_orientation" value="portrait"{% if page_orientation == "portrait" %} checked{% endif %} />Portrait</label>
+        <label><input type="radio" name="page_orientation" value="landscape"{% if page_orientation == "landscape" %} checked{% endif %} />Landscape</label>
       </div>
       <div><label for="players">Number of players: </label>
         <select name="players" id="players">

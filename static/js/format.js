@@ -82,8 +82,21 @@ function shrinkIcons(element) {
 
 $(function() {
 
+
   format_cards($('.fronts').children(), $('.backs').children());
   hide_cards();
+  rotatePages();
+
+  function rotatePages() {
+    if ($('#page_orientation').data("page-orientation") == 'landscape') {
+      $('div.page_container').each(function(index, page) {
+        page = $(page);
+        var width = page.css('width');
+        page.css('width', page.css('height'));
+        page.css('height', width);
+      });
+    }
+  }
 
   function hide_cards() {
     var card_sides = $('#info-div div#card_sides').text().toLowerCase();

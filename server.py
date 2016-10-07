@@ -28,6 +28,7 @@ def display(game_name):
     search = request.args.get('search', '').encode('UTF-8', errors='strict')
     search_card_type = request.args.get('card_type', '')
     page_size = request.args.get('page_size', 'letter')
+    page_orientation = request.args.get('page_orientation', 'portrait')
 
     duplicates = request.args.get('duplicates', 'false')
     duplicates = duplicates.lower() == 'true'
@@ -106,6 +107,7 @@ def display(game_name):
         style_print_adjust=print_adjust_stylesheet,
         columns=columns,
         page_size=page_size,
+        page_orientation=page_orientation,
         duplicates=duplicates,
         players=players,
         skip_players=skip_players,
