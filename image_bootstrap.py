@@ -21,6 +21,7 @@ parser.add_argument('-n', '--names', required=False, nargs='*', help="The name(s
 parser.add_argument('-l', '--limit', type=int, default=3, required=False, help="The number of images to download.")
 parser.add_argument('-k', '--skip', type=int, default=0, required=False, help="The number of results to skip.")
 parser.add_argument('-p', '--public', action="store_true", help="Pull only images in the public domain for which no attribution is needed.")
+parser.add_argument('-c', '--collection', help="Take images from this collection with this slug.")
 args = parser.parse_args()
 
 if args.names and not args.search:
@@ -29,6 +30,9 @@ if args.names and not args.search:
 if args.names and len(args.names) != len(args.search):
     print 'The number of names provided do not match the number of search terms.'
     exit()
+if args.search and args.collection:
+    print "Cannot search as well as ask for a specific collection."
+    exit()
 
 project = args.game_name
 search_terms = args.search
@@ -36,6 +40,7 @@ icon_names = args.names
 image_limit = args.limit
 offset = args.skip
 public_only = args.public
+collection = args.collection
 
 api_keys_file_name = 'thenounproject_api_keys.txt'
 key, secret = None, None
@@ -69,7 +74,7 @@ def add_license_info(image_info, file_path, practical_name, file_name):
 
 
 def save_icon_data(search_term, name, icon_location, attributions_location):
-    print "search_term:", search_term
+    print "Search term:", search_term
     if name != search_term:
         print "name:", name
     auth = OAuth1(key, secret)
@@ -81,6 +86,39 @@ def save_icon_data(search_term, name, icon_location, attributions_location):
     except ValueError:
         return
     for i, icon in enumerate(content['icons']):
+        icon_url = icon['preview_url']
+        icon_image = requests.get(icon_url)
+
+        practical_name = "{0}{1}".format(name, i + offset + 1)
+        if i + offset == 0:
+            practical_name = name
+        file_name = "{0}.png".format(practical_name)
+
+        save_image(icon_image, "{0}{1}".format(icon_location, file_name))
+        add_license_info(icon, attributions_location, practical_name, file_name)
+
+
+def get_collection(search_term, name):
+    print "Collection:", search_term
+    if name != search_term:
+        print "name:", name
+    auth = OAuth1(key, secret)
+    endpoint = "http://api.thenounproject.com/collection/{0}/icons?limit={1}&limit_to_public_domain={2}&offset={3}".format(search_term, image_limit, int(public_only), offset)
+
+    response = requests.get(endpoint, auth=auth)
+    try:
+        content = json.loads(response.content)
+    except ValueError:
+        print "Something went wrong with the response for the request:"
+        print endpoint
+        return
+    return content['icons']
+
+
+def save_icons(icon_data, name, icon_location, attributions_location):
+    if not icon_data:
+        return
+    for i, icon in enumerate(icon_data):
         icon_url = icon['preview_url']
         icon_image = requests.get(icon_url)
 
@@ -105,7 +143,12 @@ if search_terms:
         if icon_names:
             name = icon_names[i]
         save_icon_data(search_term, name, icon_location, attributions_location)
-
+elif collection:
+    name = collection
+    if icon_names:
+        name = icon_names[0]
+    icon_data = get_collection(collection, name)
+    save_icons(icon_data, name, icon_location, attributions_location)
 else:
     files_to_parse = ['goods.txt', 'other_icons.txt']
     for file_name in files_to_parse:
@@ -124,6 +167,3 @@ else:
                     break
 
             save_icon_data(search_term, name, icon_location, attributions_location)
-
-
-
