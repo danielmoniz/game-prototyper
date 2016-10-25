@@ -13,7 +13,14 @@
 	background-image: url("/{{ game_name }}/resource/{{ resource_name | lower }}.png");
       }
 
+      img.icon.{{ resource | lower }}.required {
+	content: url("/{{ game_name }}/resource/{{ resource_name | lower }}_required.png");
+      }
+
+      div.icon.{{ resource | lower }}.required {
+	background-image: url("/{{ game_name }}/resource/{{ resource_name | lower }}_required.png");
+      }
+
     {% endif -%}
   {% endfor -%}
 {%- endfor -%}
-

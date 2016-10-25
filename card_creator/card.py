@@ -9,8 +9,9 @@ class Card(object):
     def __init__(self, data, game_name, index=0, front=True):
         self.skip = False
 
-        self.icons = self.get_text_config('other_icons.txt')
+
         self.resources = self.get_text_config('goods.txt')
+        self.icons = self.resources + self.get_text_config('other_icons.txt')
 
         self.card_id = index
         self.game_name = game_name
@@ -97,4 +98,3 @@ class Card(object):
         if 'card_type' in data and data['card_type'].strip():
             card_type = data['card_type'].strip()
         return card_type
-
