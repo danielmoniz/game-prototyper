@@ -2,8 +2,8 @@ import unittest
 
 import mock
 
-from card_creator.player_numbers import get_num_players_required, format_num_players_required, get_max_quantity
-from card_creator.card import Card
+from card_creator.card_creator import player_numbers
+from card_creator.card_creator.player_numbers import format_num_players_required
 
 class TestPlayerNumbers(unittest.TestCase):
 
@@ -19,10 +19,6 @@ class TestPlayerNumbers(unittest.TestCase):
         self.card.qty_6_players = None
         self.card.qty_7_players = None
         self.card.qty_8_players = None
-
-    def teardown(self):
-        # delete self.card
-        pass
 
     def test_quantities_all_equal(self):
         self.card.qty_2_players = 1
@@ -130,7 +126,7 @@ class TestPlayerNumbers(unittest.TestCase):
         self.assert_min_players_and_exact(result, 8, True)
 
     def get_result(self, num_copies=None):
-        return get_num_players_required(self.card, num_copies)
+        return player_numbers.get_num_players_required(self.card, num_copies)
 
     def assert_min_players_and_exact(self, result, min_players, exact):
         self.assertEqual(result[0], min_players)
@@ -178,7 +174,7 @@ class TestMaxQuantities(unittest.TestCase):
         )
 
     def test_get_max_quantity(self):
-        result = get_max_quantity(self.quantities)
+        result = player_numbers.get_max_quantity(self.quantities)
         self.assertEqual(result, 5)
 
 
