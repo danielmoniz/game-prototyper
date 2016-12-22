@@ -60,7 +60,7 @@ def display(game_name):
             card = card_helper.Card(card_data, game_name, index=0, front=front)
             card_types.append(card.card_type)
 
-            quantity = range(card.quantity)
+            quantity = range(1, card.quantity + 1)
             if not duplicates: quantity = range(min(card.quantity, 1))
 
             for i in quantity:
@@ -70,7 +70,7 @@ def display(game_name):
                     continue
 
                 card = card_helper.Card(card_data, game_name, index=i, front=front)
-                player_numbers.update(card, i + 1, players=players, skip_players=skip_players)
+                player_numbers.update(card, i, players=players, skip_players=skip_players)
                 if not card.skip:
                     cards[front].append(get_renderable_card(game_name, card))
                     if card.only_print and not ignore_only_print:
