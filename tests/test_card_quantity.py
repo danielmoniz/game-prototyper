@@ -136,32 +136,56 @@ class TestPlayerNumbers(unittest.TestCase):
 class TestPlayerNumberOutput(unittest.TestCase):
 
     def test_bad_inputs(self):
-        result = format_num_players_required(-5, False)
+        result = format_num_players_required(-5, False, min_players=2)
         self.assertEqual('', result)
 
-        result = format_num_players_required(-5, True)
+        result = format_num_players_required(-5, True, min_players=2)
         self.assertEqual('', result)
 
     def test_exact_inputs(self):
-        result = format_num_players_required(0, True)
+        result = format_num_players_required(0, True, min_players=2)
+        self.assertEqual('', result)
+
+        result = format_num_players_required(1, True, min_players=2)
+        self.assertEqual('1', result)
+
+        result = format_num_players_required(63, True, min_players=2)
+        self.assertEqual('63', result)
+
+    def test_inexact_inputs(self):
+        result = format_num_players_required(0, False, min_players=2)
+        self.assertEqual('', result)
+
+        result = format_num_players_required(1, False, min_players=1)
+        self.assertEqual('', result)
+
+        result = format_num_players_required(2, False, min_players=2)
+        self.assertEqual('', result)
+
+        result = format_num_players_required(1, False, min_players=2)
+        self.assertEqual('', result)
+
+        result = format_num_players_required(4, False, min_players=2)
+        self.assertEqual('4+', result)
+
+    def test_default_minimum_players(self):
+        result = format_num_players_required(1, False)
         self.assertEqual('', result)
 
         result = format_num_players_required(1, True)
         self.assertEqual('1', result)
 
-        result = format_num_players_required(63, True)
-        self.assertEqual('63', result)
-
-    def test_inexact_inputs(self):
-        result = format_num_players_required(0, False)
+        result = format_num_players_required(2, False)
         self.assertEqual('', result)
 
-        result = format_num_players_required(1, False)
-        self.assertEqual('1+', result)
+        result = format_num_players_required(2, True)
+        self.assertEqual('2', result)
 
-        result = format_num_players_required(4, False)
-        self.assertEqual('4+', result)
+        result = format_num_players_required(3, False)
+        self.assertEqual('3+', result)
 
+        result = format_num_players_required(3, True)
+        self.assertEqual('3', result)
 
 class TestMaxQuantities(unittest.TestCase):
 

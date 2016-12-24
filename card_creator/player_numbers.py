@@ -48,11 +48,15 @@ def get_num_players_required(card, num_copies):
     return min_players, exact
 
 
-def format_num_players_required(players_required, exact):
+def format_num_players_required(players_required, exact, min_players=2):
     '''Assumes integer input. Returns a string like '4' or '3+'.
     Returns '' if no minimum (ie. players_required == 0).
     '''
-    if players_required <= 0:
+    # if players_required <= 0:
+    # @TODO Specific to Prosperius! Make this configurable.
+    if players_required <= min_players and not exact:
+        return ''
+    if players_required < 1:
         return ''
     num_players = "{0}".format(players_required)
     if not exact:
