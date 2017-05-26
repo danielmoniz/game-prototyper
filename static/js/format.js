@@ -82,7 +82,8 @@ function shrinkIcons(element) {
 
 $(function() {
 
-
+  var body = document.querySelector('body');
+  body.innerHTML = TextTemplater.runTemplating(body.innerHTML);
   format_cards($('.fronts').children(), $('.backs').children());
   hide_cards();
   rotatePages();

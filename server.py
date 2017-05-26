@@ -178,48 +178,15 @@ def debug(text, print_text=True):
 
 
 def format_body_text(text):
-    text = text.strip()
-    words = text.split(' ')
-    new_text_list = [words[0].capitalize()] + words[1:]
-    new_text = ' '.join(new_text_list)
-    return new_text
-
-
-def word_tokenize(text):
-    import nltk
-    nltk.download('punkt')
-    sentences = nltk.sent_tokenize(text)
-    words = nltk.word_tokenize(text)
-    '''
-    print "words:", words
-    for sentence in sentences:
-        nltk.word_tokenize(sentence)
-    '''
-    return words
+    return text
 
 
 def replace_items_with_tokens(text, item_list, template):
-    chunks = text.split()
-    for i, chunk in enumerate(chunks):
-        for item_block in item_list:
-            for item in item_block.split()[::-1]:
-                if item in chunk:
-                    # ignore items with a backslash prepended and replace others
-                    # NOTE: this code cannot handle (say) 'graingrainsgrain'
-                    # because the loop will break before dealing with both 'grain'
-                    # and 'grains'
-                    chunk = chunk.replace('\\' + item, '@#$%^')
-                    chunk = chunk.replace(item, template.format(item))
-                    chunk = chunk.replace('@#$%^', item)
-                    chunks[i] = chunk
-                    break
-
-    return ' '.join(chunks)
+    return text
 
 
 app.jinja_env.filters['debug'] = debug
 app.jinja_env.filters['format_body_text'] = format_body_text
-app.jinja_env.filters['word_tokenize'] = word_tokenize
 app.jinja_env.filters['replace_items_with_tokens'] = replace_items_with_tokens
 
 if __name__ == '__main__':
