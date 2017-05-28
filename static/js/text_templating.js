@@ -92,7 +92,7 @@ var TextTemplater = {
         return className.trim();
       });
       classesString = classes.join(' '); }
-    return "<img src='" + iconsPath + type.toLowerCase() + ".png' class='icon tiny " + classesString + "' />";
+    return "<img src='" + iconsPath + type.toLowerCase() + ".png' class='icon small " + classesString + "' />";
   },
 
   // builds an array instead of a string
