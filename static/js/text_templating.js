@@ -87,12 +87,17 @@ var TextTemplater = {
    */
   makeIcon: function(type, classes) {
     var classesString = '';
+    var sizes = ['tiny', 'small', 'medium', 'large', 'huge'];
+    var defaultSizeClass = ' small';
     if (classes) {
       classes = classes.map(function(className) {
+        if (sizes.indexOf(className.trim()) !== -1) {
+          defaultSizeClass = "";
+        }
         return className.trim();
       });
       classesString = classes.join(' '); }
-    return "<img src='" + iconsPath + type.toLowerCase() + ".png' class='icon small " + classesString + "' />";
+    return "<img src='" + iconsPath + type.toLowerCase() + ".png' class='icon" + defaultSizeClass + " " + classesString + "' />";
   },
 
   // builds an array instead of a string
