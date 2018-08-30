@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 
 
+MIN_PLAYERS = 2
+
+
 def update(card, count, *args, **kwargs):
     # if asking to print more cards than allowed...
     if get_max_quantity(get_quantities(card)) < count:
@@ -48,7 +51,7 @@ def get_num_players_required(card, num_copies):
     return min_players, exact
 
 
-def format_num_players_required(players_required, exact, min_players=2):
+def format_num_players_required(players_required, exact, min_players=MIN_PLAYERS):
     '''Assumes integer input. Returns a string like '4' or '3+'.
     Returns '' if no minimum (ie. players_required == 0).
     '''
@@ -69,13 +72,4 @@ def get_max_quantity(quantities):
 
 
 def get_quantities(card):
-    return (
-        (1, getattr(card, 'qty_1_players', None)),
-        (2, getattr(card, 'qty_2_players', None)),
-        (3, getattr(card, 'qty_3_players', None)),
-        (4, getattr(card, 'qty_4_players', None)),
-        (5, getattr(card, 'qty_5_players', None)),
-        (6, getattr(card, 'qty_6_players', None)),
-        (7, getattr(card, 'qty_7_players', None)),
-        (8, getattr(card, 'qty_8_players', None)),
-    )
+    return tuple([(i + 1, getattr(card, "qty_{}_players".format(i + 1), None)) for i in range(7)])

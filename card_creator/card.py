@@ -3,6 +3,8 @@ import sys
 import imp
 
 import resource
+import player_numbers
+
 
 class Card(object):
 
@@ -28,7 +30,11 @@ class Card(object):
         self.set_generic_data(data)
 
         if not hasattr(self, 'quantity') or self.quantity == '':
-            self.quantity = 1
+            quantities = player_numbers.get_quantities(self)
+            max_quantity = player_numbers.get_max_quantity(quantities)
+            self.quantity = max_quantity
+            if max_quantity is None:
+                self.quantity = 1
 
         self.set_has_costs()
 
